@@ -8,18 +8,41 @@
             <p class="has-dropdown">Manage products</p>
             <ul class="child-dropdown">
               <li>
-                <p>Product lists</p>
+                <router-link
+                  @click="scrollToTop()"
+                  class="nav-link"
+                  to="/productsadmin"
+                  >Products list</router-link
+                >
               </li>
               <li>
-                <p>Product Categories</p>
-              </li>
-              <li>
-                <p>Add product</p>
+                <router-link
+                  @click="scrollToTop()"
+                  class="nav-link"
+                  to="/categoriesadmin"
+                  >Categories list</router-link
+                >
               </li>
             </ul>
           </li>
           <li>
             <p class="has-dropdown">Manage users</p>
+            <ul class="child-dropdown">
+              <li>
+                <router-link
+                  @click="scrollToTop()"
+                  class="nav-link"
+                  to="/usersadmin"
+                  >Users list</router-link
+                >
+              </li>
+              <li>
+                <p>s</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Manage comments</p>
             <ul class="child-dropdown">
               <li>
                 <p>Product lists</p>
@@ -32,7 +55,6 @@
               </li>
             </ul>
           </li>
-          <li><p>Manage comments</p></li>
         </ul>
       </div>
     </div>
@@ -46,7 +68,7 @@ export default {
 <style scoped>
 .item {
   margin-top: 100px;
-  margin-bottom: 100px;
+  margin-bottom: 250px;
 }
 .admin-menu li {
   display: inline-block;

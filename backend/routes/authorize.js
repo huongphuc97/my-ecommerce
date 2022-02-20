@@ -4,7 +4,7 @@ function authPage(permission) {
         if (permission.includes(userRole)) {
             next()
         } else response.send({
-            mess:'You do not have permission'
+            mess: 'You do not have permission'
         })
     }
 }

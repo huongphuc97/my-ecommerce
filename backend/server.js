@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
+require('./routes/admin/AdminRoute')(app);
 require('./routes/authen')(app);
 require('./routes/category')(app);
 require('./routes/favourite')(app);

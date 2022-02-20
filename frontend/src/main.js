@@ -25,6 +25,11 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                     .get("http://localhost:3000/products")
                     .then((response) => (this.products = response.data.myData));
             },
+            refreshProductsApi() {
+                setInterval(() => {
+                    this.productsApi();
+                }, 100);
+            },
             menApi() {
                 axios
                     .get("http://localhost:3000/products/men")
@@ -69,6 +74,11 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                 axios
                     .get("http://localhost:3000/favourites")
                     .then((response) => (this.favourites = response.data.myData));
+            },
+            accountsApi() {
+                axios
+                    .get("http://localhost:3000/accounts")
+                    .then((response) => (this.accounts = response.data.myData));
             },
             refreshFavourites() {
                 setInterval(() => {

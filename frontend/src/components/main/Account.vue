@@ -64,6 +64,9 @@ export default {
           })
           .then((response) => (this.data = response.data.myData));
       });
+    // setInterval(() => {
+    //   axios.get("http://localhost:3000/accounts").then((response) => response);
+    // }, 100);
   },
 };
 </script>

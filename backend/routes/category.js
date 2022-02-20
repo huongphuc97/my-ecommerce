@@ -4,7 +4,7 @@ module.exports = function (app) {
 
     app.get('/categories', function (request, response) {
         let sql = 'SELECT * FROM category'
-        conn.query(sql, function (err, data) {
+        conn.query(sql, function (err, data){
             response.send({
                 myData: data,
                 result: data.length ? 200 : ""

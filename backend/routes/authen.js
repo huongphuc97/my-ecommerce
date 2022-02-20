@@ -26,7 +26,7 @@ module.exports = function (app) {
         })
     })
 
-    app.get('/accounts', function (request, response) {
+    app.get('/accounts/user', function (request, response) {
         let sql = 'SELECT * FROM account';
         conn.query(sql, function (err, data) {
             response.send({

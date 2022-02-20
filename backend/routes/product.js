@@ -5,7 +5,7 @@ const authPage = require('./authorize')
 
 module.exports = function (app) {
 
-    app.get('/products',  function (request, response) {
+    app.get('/products',function (request, response) {
         let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC';
         conn.query(sql, function (err, data) {
             response.send({
@@ -155,7 +155,7 @@ module.exports = function (app) {
             var fullData = Object.values(data[0])
             fullData.forEach((totalItems) => {
                 if (request.params.id == 1) {
-                    let sql = 'SELECT * FROM product LIMIT 8'
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 8'
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -167,7 +167,7 @@ module.exports = function (app) {
                     })
                 }
                 else if (request.params.id == 2) {
-                    let sql = 'SELECT * FROM product LIMIT 8 OFFSET 8'
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 8 OFFSET 8'
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -179,7 +179,7 @@ module.exports = function (app) {
                     })
                 }
                 else {
-                    let sql = 'SELECT * FROM product LIMIT 8 OFFSET ' + (request.params.id - 1) * 8 + ''
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 8 OFFSET ' + (request.params.id - 1) * 8 + ''
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -200,7 +200,7 @@ module.exports = function (app) {
             var fullData = Object.values(data[0])
             fullData.forEach((totalItems) => {
                 if (request.params.id == 1) {
-                    let sql = 'SELECT * FROM product LIMIT 9'
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9'
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -212,7 +212,7 @@ module.exports = function (app) {
                     })
                 }
                 else if (request.params.id == 2) {
-                    let sql = 'SELECT * FROM product LIMIT 9 OFFSET 9'
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9 OFFSET 9'
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -224,7 +224,7 @@ module.exports = function (app) {
                     })
                 }
                 else {
-                    let sql = 'SELECT * FROM product LIMIT 9 OFFSET ' + (request.params.id - 1) * 9 + ''
+                    let sql = 'SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9 OFFSET ' + (request.params.id - 1) * 9 + ''
                     conn.query(sql, function (err, data) {
                         response.send({
                             page: parseInt(request.params.id),
@@ -251,7 +251,7 @@ module.exports = function (app) {
             })
         })
     })
-
+    
     app.put('/products/:id', function (request, response) {
         let sql = 'UPDATE product SET ? WHERE id = ?';
         conn.query(sql, [request.body, request.params.id], function (err, data) {

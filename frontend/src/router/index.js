@@ -8,6 +8,9 @@ import Products from '../components/main/Products.vue'
 import Login from '../components/main/Login.vue'
 import Account from '../components/main/Account.vue'
 import Admin from '../components/main/Admin.vue'
+import CategoriesAdmin from '../components/main/AdminPage/CategoriesAdmin.vue'
+import ProductsAdmin from '../components/main/AdminPage/ProductsAdmin.vue'
+import UsersAdmin from '../components/main/AdminPage/UsersAdmin.vue'
 
 const routes = [
   {
@@ -55,6 +58,21 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     component: Admin
+  },
+  {
+    path: '/categoriesadmin',
+    name: 'CategoriesAdmin',
+    component: CategoriesAdmin
+  },
+  {
+    path: '/productsadmin',
+    name: 'ProductsAdmin',
+    component: ProductsAdmin
+  },
+  {
+    path: '/usersadmin',
+    name: 'UsersAdmin',
+    component: UsersAdmin
   },
 ]
 
