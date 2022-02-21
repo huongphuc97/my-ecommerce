@@ -17,7 +17,7 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)  
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
     .mixin({
         methods: {
             productsApi() {
@@ -65,6 +65,15 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                     .get("http://localhost:3000/cart")
                     .then((response) => (this.cart = response.data.myData));
             },
+            categoryApi() {
+                axios.get("http://localhost:3000/categories")
+                    .then((response) => (this.categories = response.data.myData));
+            },
+            refreshCategoryApi() {
+                setInterval(() => {
+                    this.categoryApi();
+                }, 100);
+            },
             refreshCart() {
                 setInterval(() => {
                     this.cartApi();
@@ -79,6 +88,11 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                 axios
                     .get("http://localhost:3000/accounts")
                     .then((response) => (this.accounts = response.data.myData));
+            },
+            refreshUser() {
+                setInterval(() => {
+                    this.accountsApi();
+                }, 100);
             },
             refreshFavourites() {
                 setInterval(() => {

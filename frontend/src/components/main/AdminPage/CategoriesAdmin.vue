@@ -1,8 +1,8 @@
 <template>
   <div class="item">
     <h1 class="text-center">Manage categories</h1>
-    <div class="container">
-      <table class="table">
+    <div v-if="this.role == 'admin'" class="container">
+      <table v-if="this.role == 'admin'" class="table">
         <thead>
           <tr>
             <th>ID</th>
@@ -74,6 +74,9 @@
         </div>
       </div>
     </div>
+    <div v-else class="no-info">
+      <p class="text-center">You do not have permission</p>
+    </div>
   </div>
 </template>
 <script>
@@ -85,24 +88,51 @@ export default {
       categories: [],
       modalData: [],
       name: null,
+      role: null,
     };
   },
   methods: {
     addCate() {
-      var notiSuccess = axios.post("http://localhost:3000/categories", {
-        name: this.name,
-      });
+      var notiSuccess = axios.post(
+        "http://localhost:3000/categories",
+        {
+          name: this.name,
+        },
+        {
+          params: {
+            role: this.role,
+          },
+        }
+      );
       if (notiSuccess) {
         alert(`Created ${this.name}`);
+        this.refreshCategoryApi();
       }
     },
   },
   mounted() {
-    setInterval(() => {
-      axios
-        .get("http://localhost:3000/categories")
-        .then((response) => (this.categories = response.data.myData));
-    }, 100);
+    var token = localStorage.getItem("token");
+    axios
+      .get("http://localhost:3000/accounts/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.myData) {
+          this.role = response.data.myData.role;
+          this.username = response.data.myData.username;
+          this.created_at = response.data.myData.created_at;
+          this.last_login = response.data.myData.last_login;
+        }
+        axios
+          .get("http://localhost:3000/categories", {
+            params: {
+              role: this.role,
+            },
+          })
+          .then((response) => (this.categories = response.data.myData));
+      });
   },
 };
 </script>

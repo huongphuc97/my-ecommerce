@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="container">
-      <h2 class="text-center mb-5">Manage Products</h2>
+      <h1 class="text-center mb-5">Manage Products</h1>
       <!-- Button trigger modal -->
       <!-- <button
         type="button"
@@ -123,9 +123,9 @@
           </div>
         </div>
       </div> -->
-      <table class="table">
+      <table v-if="this.role == 'admin'" class="text-center table">
         <thead>
-          <tr class="text-center">
+          <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
@@ -140,7 +140,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="text-center" v-for="pro in products" :key="pro.id">
+          <tr v-for="pro in products" :key="pro.id">
             <td scope="row">{{ pro.id }}</td>
             <td>{{ pro.name }}</td>
             <td>{{ pro.price }}</td>
@@ -173,151 +173,17 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="this.products" class="row">
-        <div class="col-md-12">
-          <VueTailwindPagination
-            :current="currentPage"
-            :total="total"
-            :per-page="perPage"
-            @page-changed="pageChange($event)"
-          />
-        </div>
-        <div
-          class="modal fade"
-          id="modelId"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="modelTitleId"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Edit product</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form @submit.prevent="editModalData()" action="">
-                  <div class="form-group">
-                    <label for="">ID</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.id"
-                      class="form-control"
-                      v-model="id"
-                      readonly
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id=""
-                      :placeholder="this.modalData.name"
-                      class="form-control"
-                      v-model="name"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Price</label>
-                    <input
-                      type="text"
-                      name="price"
-                      id=""
-                      :placeholder="this.modalData.price"
-                      class="form-control"
-                      v-model="price"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Sale price</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.sale_price"
-                      class="form-control"
-                      v-model="sale_price"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Image</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.image"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Status</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.status"
-                      class="form-control"
-                      v-model="status"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Description</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.description"
-                      class="form-control"
-                      v-model="description"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="">Quantity</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      :placeholder="this.modalData.quantity"
-                      class="form-control"
-                      v-model="quantity"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="submit" class="btn btn-primary">Save</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div v-else class="no-info">
+        <p class="text-center">You do not have permission</p>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-import VueTailwindPagination from "@ocrv/vue-tailwind-pagination";
-
 const moment = require("moment");
 export default {
   name: "ProductsAdmin",
-  components: { VueTailwindPagination },
   data() {
     return {
       products: [],
@@ -345,20 +211,6 @@ export default {
       axios.delete(`http://localhost:3000/products/${product.id}`);
       this.refreshProductsApi();
     },
-    async getData() {
-      var response = await axios.get(
-        `http://localhost:3000/products/admin/pages=${this.currentPage}`
-      );
-      var responseData = response.data;
-      this.currentPage = responseData.page;
-      this.perPage = responseData.per_page;
-      this.total = responseData.total;
-      this.products = response.data.myData;
-    },
-    pageChange(event) {
-      this.currentPage = event;
-      this.getData();
-    },
     editModalData() {
       var notify = axios.put(
         `http://localhost:3000/products/${this.modalData.id}`,
@@ -382,8 +234,6 @@ export default {
     },
   },
   mounted() {
-    this.currentPage = 1;
-    this.getData();
     var token = localStorage.getItem("token");
     axios
       .get("http://localhost:3000/accounts/get", {
@@ -392,10 +242,12 @@ export default {
         },
       })
       .then((response) => {
-        this.role = response.data.myData.user[0].role;
-        this.username = response.data.myData.user[0].username;
-        this.created_at = response.data.myData.user[0].created_at;
-        this.last_login = response.data.myData.user[0].last_login;
+        if (response.data.myData) {
+          this.role = response.data.myData.role;
+          this.username = response.data.myData.username;
+          this.created_at = response.data.myData.created_at;
+          this.last_login = response.data.myData.last_login;
+        }
         axios
           .get("http://localhost:3000/products/admin", {
             params: {
@@ -404,9 +256,6 @@ export default {
           })
           .then((response) => (this.products = response.data.myData));
       });
-    axios
-      .get("http://localhost:3000/categories")
-      .then((response) => (this.categories = response.data.myData));
   },
 };
 </script>

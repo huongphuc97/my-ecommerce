@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Second-header />
     <Banner />
     <Introduce-products />
     <Divide-products />
@@ -55,7 +54,6 @@
 </template>
 
 <script>
-import SecondHeader from "../Second-header.vue";
 import Banner from "../Banner.vue";
 import IntroduceProducts from "../Introduce-products.vue";
 import DivideProducts from "../Divide-products.vue";
@@ -68,7 +66,6 @@ import axios from "axios";
 export default {
   name: "Home",
   components: {
-    SecondHeader,
     Banner,
     IntroduceProducts,
     DivideProducts,

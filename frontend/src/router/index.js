@@ -6,6 +6,7 @@ import Favourite from '../components//main/Favourite.vue'
 import DetailProducts from '../components/main/Detail-products.vue'
 import Products from '../components/main/Products.vue'
 import Login from '../components/main/Login.vue'
+import Register from '../components/main/Register.vue'
 import Account from '../components/main/Account.vue'
 import Admin from '../components/main/Admin.vue'
 import CategoriesAdmin from '../components/main/AdminPage/CategoriesAdmin.vue'
@@ -48,6 +49,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/account',

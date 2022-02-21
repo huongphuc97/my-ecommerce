@@ -1,5 +1,4 @@
 const conn = require('../../connect');
-const upload = require('../../upload');
 const authPage = require('../authorize')
 module.exports = function (app) {
 
@@ -58,12 +57,13 @@ module.exports = function (app) {
             })
         })
 
-        app.get('/accounts/admin', authPage('admin'), function (request, response) {
-            let sql = 'SELECT * FROM account';
-            conn.query(sql, function (err, data) {
-                response.send({
-                    myData: data
-                })
+    })
+    
+    app.get('/accounts/admin', authPage('admin'), function (request, response) {
+        let sql = "SELECT * FROM account";
+        conn.query(sql, function (err, data) {
+            response.send({
+                myData: data
             })
         })
     })

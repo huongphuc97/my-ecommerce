@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5 mb-5">
+  <div class="top container mt-5 mb-5">
     <swiper
       :effect="'fade'"
       :spaceBetween="30"
@@ -79,6 +79,9 @@ $(document).ready(function () {
 });
 </script>
 <style scoped>
+.top {
+  margin-top: 80px !important;
+}
 .swiper-slide img {
   display: block;
   width: 100%;

@@ -1,10 +1,11 @@
 const conn = require('../connect');
+const authPage = require('./authorize')
 
 module.exports = function (app) {
 
-    app.get('/categories', function (request, response) {
+    app.get('/categories', authPage('admin'), function (request, response) {
         let sql = 'SELECT * FROM category'
-        conn.query(sql, function (err, data){
+        conn.query(sql, function (err, data) {
             response.send({
                 myData: data,
                 result: data.length ? 200 : ""
@@ -22,7 +23,7 @@ module.exports = function (app) {
         })
     })
 
-    app.post('/categories', function (request, response) {
+    app.post('/categories', authPage('admin'), function (request, response) {
         let sql = 'INSERT INTO category SET ?';
         conn.query(sql, request.body, function (err, data) {
             response.send({

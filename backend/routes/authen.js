@@ -21,12 +21,12 @@ module.exports = function (app) {
     app.get('/accounts/get', verifyToken, function (request, response) {
         jwt.verify(request.token, "secretkey", function (err, data) {
             response.send({
-                myData: data
+                myData: data ? data.user[0] : null,
             })
         })
     })
 
-    app.get('/accounts/user', function (request, response) {
+    app.get('/accounts', function (request, response) {
         let sql = 'SELECT * FROM account';
         conn.query(sql, function (err, data) {
             response.send({
@@ -48,7 +48,7 @@ module.exports = function (app) {
         }
     }
 
-    app.post('/accounts/create', function (request, response) {
+    app.post('/accounts/create', authPage('admin'), function (request, response) {
         let sql = 'INSERT INTO account SET ?';
         conn.query(sql, request.body, function (err, data) {
             response.send({
@@ -57,7 +57,7 @@ module.exports = function (app) {
         })
     })
 
-    app.put('/accounts/:id', function (request, response) {
+    app.put('/accounts/:id', authPage('admin'), function (request, response) {
         let sql = 'UPDATE account SET ? WHERE id = ?';
         conn.query(sql, [request.body, request.params.id], function (err, data) {
             response.send({
@@ -67,7 +67,7 @@ module.exports = function (app) {
         })
     })
 
-    app.delete('/accounts/:id', function (request, response) {
+    app.delete('/accounts/:id', authPage('admin'), function (request, response) {
         let sql = 'DELETE FROM account WHERE id = ?';
         conn.query(sql, request.params.id, function (err, data) {
             response.send({

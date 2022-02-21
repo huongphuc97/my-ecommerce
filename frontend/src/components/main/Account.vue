@@ -17,10 +17,10 @@
           >
         </button>
       </div>
-      <div v-if="this.role == 'guest'">
-        <p>You do not have permission</p>
+      <div class="text-center" v-if="this.role == 'guest'">
+        <p>You do not have permission to access to admin panel</p>
       </div>
-      <div class="login-warning" v-if="!this.role">
+      <div class="login-warning" v-if="this.role === null">
         <div class="d-flex justify-center">
           <p class="pr-2">You are not logging in</p>
           <router-link @click="scrollToTop()" to="/login">Login</router-link>
@@ -52,21 +52,20 @@ export default {
         },
       })
       .then((response) => {
-        this.role = response.data.myData.user[0].role;
-        this.username = response.data.myData.user[0].username;
-        this.created_at = response.data.myData.user[0].created_at;
-        this.last_login = response.data.myData.user[0].last_login;
+        if (response.data.myData) {
+          this.role = response.data.myData.role;
+          this.username = response.data.myData.username;
+          this.created_at = response.data.myData.created_at;
+          this.last_login = response.data.myData.last_login;
+        }
         axios
-          .get("http://localhost:3000/products", {
+          .get("http://localhost:3000/accounts/admin", {
             params: {
               role: this.role,
             },
           })
           .then((response) => (this.data = response.data.myData));
       });
-    // setInterval(() => {
-    //   axios.get("http://localhost:3000/accounts").then((response) => response);
-    // }, 100);
   },
 };
 </script>

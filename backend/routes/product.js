@@ -252,7 +252,7 @@ module.exports = function (app) {
         })
     })
     
-    app.put('/products/:id', function (request, response) {
+    app.put('/products/:id',authPage('admin'), function (request, response) {
         let sql = 'UPDATE product SET ? WHERE id = ?';
         conn.query(sql, [request.body, request.params.id], function (err, data) {
             response.send({
@@ -262,7 +262,7 @@ module.exports = function (app) {
         })
     })
 
-    app.delete('/products/:id', function (request, response) {
+    app.delete('/products/:id',authPage('admin'), function (request, response) {
         let sql = 'DELETE FROM product WHERE id = ?';
         conn.query(sql, request.params.id, function (err, data) {
             response.send({

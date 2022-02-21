@@ -5,55 +5,28 @@
       <div class="admin-menu">
         <ul class="d-flex justify-center">
           <li>
-            <p class="has-dropdown">Manage products</p>
-            <ul class="child-dropdown">
-              <li>
-                <router-link
-                  @click="scrollToTop()"
-                  class="nav-link"
-                  to="/productsadmin"
-                  >Products list</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  @click="scrollToTop()"
-                  class="nav-link"
-                  to="/categoriesadmin"
-                  >Categories list</router-link
-                >
-              </li>
-            </ul>
+            <router-link
+              @click="scrollToTop()"
+              class="nav-link"
+              to="/productsadmin"
+              >Products list</router-link
+            >
           </li>
           <li>
-            <p class="has-dropdown">Manage users</p>
-            <ul class="child-dropdown">
-              <li>
-                <router-link
-                  @click="scrollToTop()"
-                  class="nav-link"
-                  to="/usersadmin"
-                  >Users list</router-link
-                >
-              </li>
-              <li>
-                <p>s</p>
-              </li>
-            </ul>
+            <router-link
+              @click="scrollToTop()"
+              class="nav-link"
+              to="/usersadmin"
+              >Users list</router-link
+            >
           </li>
           <li>
-            <p>Manage comments</p>
-            <ul class="child-dropdown">
-              <li>
-                <p>Product lists</p>
-              </li>
-              <li>
-                <p>Product Categories</p>
-              </li>
-              <li>
-                <p>Add product</p>
-              </li>
-            </ul>
+            <router-link
+              @click="scrollToTop()"
+              class="nav-link"
+              to="/categoriesadmin"
+              >Categories list</router-link
+            >
           </li>
         </ul>
       </div>

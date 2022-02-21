@@ -31,8 +31,10 @@
         </li>
 
         <li v-if="!this.username" class="">
-          <a class="upper-content" href=""
-            ><i class="icon fas fa-edit"></i>Register</a
+          <router-link @click="this.scrollToTop()" to="/register">
+            <p class="upper-content">
+              <i class="icon fas fa-edit"></i>Register
+            </p></router-link
           >
         </li>
       </ul>
@@ -45,7 +47,7 @@ export default {
   name: "Upper-header",
   data() {
     return {
-      username: null,
+      username: "",
     };
   },
   methods: {
@@ -57,9 +59,11 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then(
-          (response) => (this.username = response.data.myData.user[0].username)
-        );
+        .then((response) => {
+          if (response.data.myData !== null) {
+            this.username = response.data.myData.username;
+          }
+        });
     },
     refreshUser() {
       setInterval(() => {
@@ -116,7 +120,7 @@ li .icon {
   margin: 0 30px;
 }
 .before-none::before {
-  content: none !important
+  content: none !important;
 }
 .logo-brand {
   flex: 0 0 20%;
