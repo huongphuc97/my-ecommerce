@@ -9,8 +9,6 @@
             <p style="padding-right: 30px">Sort By:</p>
 
             <select
-              name=""
-              id=""
               class="custom-select"
               v-model="selectOption"
               @change="changeSelect(this.selectOption)"

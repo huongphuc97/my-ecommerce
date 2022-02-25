@@ -50,7 +50,7 @@
                       <td>{{ c.name }}</td>
                       <td>{{ c.price }}</td>
                       <td>{{ c.quantity }}</td>
-                      <td>$ {{ totalPrice }}</td>
+                      <td>$ {{ c.price * c.quantity }}</td>
                       <td>
                         <button @click="deleteItemCart(c)">
                           <i class="fas fa-trash-alt"></i>
@@ -61,6 +61,11 @@
                 </table>
               </div>
             </div>
+          </div>
+          <div class="text-center">
+            <button @click="makeOrder()" class="btn btn-success">
+              Make order
+            </button>
           </div>
         </div>
       </div>
@@ -80,19 +85,37 @@ export default {
     deleteItemCart(item) {
       axios.delete(`http://localhost:3000/cart/${item.id}`);
     },
-  },
-  computed: {
-    totalPrice() {
-      let total = 0;
-      this.cart.map(function (item) {
-        return (total += item.quantity * item.price);
+    makeOrder() {
+      this.cart.map((item) => {
+        var noti = axios.post("http://localhost:3000/orders", {
+          user_id: this.idUser,
+          order_details_name: item.name,
+          order_details_price: item.price,
+          order_details_quantity: item.quantity,
+        });
+        if (noti) {
+          axios.delete("http://localhost:3000/cart");
+        }
       });
-      return total;
+    },
+    getUser() {
+      var token = localStorage.getItem("token");
+      axios
+        .get("http://localhost:3000/accounts/get", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.myData) {
+            this.idUser = response.data.myData.id;
+          }
+        });
     },
   },
   mounted() {
     this.cartApi();
-    this.refreshCart();
+    this.getUser();
   },
 };
 </script>

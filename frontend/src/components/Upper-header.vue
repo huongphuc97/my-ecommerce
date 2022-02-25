@@ -60,7 +60,7 @@ export default {
           },
         })
         .then((response) => {
-          if (response.data.myData !== null) {
+          if (response.data.myData) {
             this.username = response.data.myData.username;
           }
         });

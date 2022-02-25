@@ -32,6 +32,7 @@ require('./routes/favourite')(app);
 require('./routes/product')(app);
 require('./routes/cart')(app);
 require('./routes/review')(app);
+require('./routes/order')(app);
 
 app.listen(3000, function () {
     console.log('http://localhost:3000');

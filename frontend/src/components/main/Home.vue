@@ -105,7 +105,7 @@ export default {
       });
       if (foundItem) {
         axios.put(`http://localhost:3000/cart/${foundItem.id}`, {
-          quantity: (foundItem.quantity += quantity1),
+          quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
         axios.post("http://localhost:3000/cart", {
@@ -203,4 +203,3 @@ img {
   height: 350px;
 }
 </style>
-

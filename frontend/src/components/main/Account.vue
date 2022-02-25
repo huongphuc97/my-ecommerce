@@ -2,12 +2,45 @@
   <div class="item">
     <div class="container">
       <div v-if="this.role">
-        <div class="jumbotron">
-          <p class="lead">Welcome back {{ this.username }}</p>
-          <hr class="my-2" />
-          <p>Your role is {{ this.role }}</p>
-          <p>Created at {{ moment(this.created_at, moment.ISO_8601) }}</p>
-          <p>Last login {{ moment(this.last_login, moment.ISO_8601) }}</p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="jumbotron">
+              <p class="lead">Welcome back {{ this.username }}</p>
+              <hr class="my-2" />
+              <p>Your role is {{ this.role }}</p>
+              <p>Created at {{ moment(this.created_at, moment.ISO_8601) }}</p>
+              <p>Last login {{ moment(this.last_login, moment.ISO_8601) }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="jumbotron">
+              <p class="lead">Your orders</p>
+              <hr class="my-2" />
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Order code</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="ord in orders" :key="ord.id">
+                    <td scope="row">{{ ord.order_code }}</td>
+                    <td>
+                      <button style="color:#fff;" class="btn btn-primary">
+                        <router-link
+                          @click="this.scrollToTop()"
+                          :to="`/order/${ord.order_code}`"
+                        >
+                          View details
+                        </router-link>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <div class="d-flex justify-center" v-if="this.role == 'admin'">
@@ -16,9 +49,6 @@
             >Go to admin panel</router-link
           >
         </button>
-      </div>
-      <div class="text-center" v-if="this.role == 'guest'">
-        <p>You do not have permission to access to admin panel</p>
       </div>
       <div class="login-warning" v-if="this.role === null">
         <div class="d-flex justify-center">
@@ -41,6 +71,9 @@ export default {
       created_at: null,
       data: [],
       moment: moment,
+      idUser: null,
+      orders: [],
+      order_name: null,
     };
   },
   mounted() {
@@ -53,6 +86,7 @@ export default {
       })
       .then((response) => {
         if (response.data.myData) {
+          this.idUser = response.data.myData.id;
           this.role = response.data.myData.role;
           this.username = response.data.myData.username;
           this.created_at = response.data.myData.created_at;
@@ -65,6 +99,9 @@ export default {
             },
           })
           .then((response) => (this.data = response.data.myData));
+        axios
+          .get(`http://localhost:3000/orders/${this.idUser}`)
+          .then((response) => (this.orders = response.data.myData));
       });
   },
 };
@@ -97,5 +134,8 @@ export default {
 .login-warning {
   margin-top: 180px;
   margin-bottom: 100px;
+}
+.btn-primary{
+  background-color: #fff !important;
 }
 </style>

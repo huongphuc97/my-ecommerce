@@ -11,16 +11,6 @@ module.exports = function (app) {
         })
     })
 
-    app.get('/favourites/:id', function (request, response) {
-        let sql = 'SELECT f.*, c.name as category FROM favourite f JOIN category c ON f.category_id = c.id WHERE id = ?'
-        conn.query(sql, request.params.id, function (err, data) {
-            response.send({
-                myData: data[0],
-                result: data.length ? 200 : ""
-            })
-        })
-    })
-
     app.post('/favourites', function (request, response) {
         let sql = 'INSERT INTO favourite SET ?';
         conn.query(sql, request.body, function (err, data) {

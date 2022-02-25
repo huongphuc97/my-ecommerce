@@ -24,7 +24,7 @@ module.exports = function (app) {
         let sql = 'INSERT INTO cart SET ?';
         conn.query(sql, request.body, function (err, data) {
             response.send({
-                result: data.length ? 200 : ""
+                result: data
             })
         })
     })
@@ -43,7 +43,7 @@ module.exports = function (app) {
         let sql = 'DELETE FROM cart';
         conn.query(sql, request.params.id, function (err, data) {
             response.send({
-                result: data.length ? 200 : ""
+                result: data
             })
         })
     })

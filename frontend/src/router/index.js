@@ -12,6 +12,8 @@ import Admin from '../components/main/Admin.vue'
 import CategoriesAdmin from '../components/main/AdminPage/CategoriesAdmin.vue'
 import ProductsAdmin from '../components/main/AdminPage/ProductsAdmin.vue'
 import UsersAdmin from '../components/main/AdminPage/UsersAdmin.vue'
+import Order from '../components/main/Order.vue'
+import Track from '../components/main/Track.vue'
 
 const routes = [
   {
@@ -64,6 +66,17 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     component: Admin
+  },
+  {
+    path: '/order/:code',
+    name: 'Order',
+    props: true,
+    component: Order
+  },
+  {
+    path: '/track',
+    name: 'Track',
+    component: Track
   },
   {
     path: '/categoriesadmin',

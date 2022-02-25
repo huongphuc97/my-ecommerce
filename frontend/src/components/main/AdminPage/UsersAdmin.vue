@@ -2,11 +2,80 @@
   <div class="item">
     <h1 class="text-center">Manage users</h1>
     <div class="container">
-      <table v-if="this.accounts" class="text-center table">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#modelId2"
+      >
+        Create
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modelId2"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modelTitleId"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add User</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" @submit.prevent="createUser()">
+                <div class="form-group">
+                  <label for="">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="usernameNew"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Password</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="passwordNew"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Role</label>
+                  <input type="text" class="form-control" v-model="roleNew" />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table v-if="this.accounts" class="table">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th>ID</th>
-            <th>Name</th>
+            <th>Username</th>
             <th>Role</th>
             <th>Created</th>
             <th>Last login</th>
@@ -90,7 +159,7 @@
               <div class="form-group">
                 <label for="">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   :placeholder="this.modalData.password"
                   class="form-control"
                   v-model="passwordModal"
@@ -135,9 +204,23 @@ export default {
       usernameModal: null,
       passwordModal: null,
       roleModal: null,
+      usernameNew: null,
+      passwordNew: null,
+      roleNew: null,
     };
   },
   methods: {
+    createUser() {
+      axios.post(
+        "http://localhost:3000/accounts/create",
+        {
+          username: this.usernameNew,
+          password: this.passwordNew,
+          role: this.roleNew,
+        },
+        { params: { role: this.role } }
+      );
+    },
     editUser(accounts) {
       this.modalData = accounts;
     },
@@ -150,7 +233,7 @@ export default {
       this.refreshUser();
     },
     editModalData() {
-      var notify = axios.put(
+      axios.put(
         `http://localhost:3000/accounts/${this.modalData.id}`,
         {
           username: this.usernameModal

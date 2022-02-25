@@ -19,12 +19,10 @@
               >
             </li>
             <li>
-              <router-link @click="scrollToTop()" class="nav-link" to="/about"
-                >About</router-link
-              >
-            </li>
-            <li>
-              <router-link @click="scrollToTop()" class="nav-link" to="/products"
+              <router-link
+                @click="scrollToTop()"
+                class="nav-link"
+                to="/products"
                 >Products</router-link
               >
             </li>
@@ -39,6 +37,11 @@
             <li>
               <router-link @click="scrollToTop()" class="nav-link" to="/cart"
                 >Cart</router-link
+              >
+            </li>
+            <li>
+              <router-link @click="scrollToTop()" class="nav-link" to="/track"
+                >Tracking order</router-link
               >
             </li>
           </ul>
@@ -71,7 +74,11 @@
       </div>
       <div class="d-flex justify-content-between title">
         <h5>wishlist :</h5>
-        <span v-if="favourites.length" style="cursor:pointer" @click="clearWishlist()">
+        <span
+          v-if="favourites.length"
+          style="cursor: pointer"
+          @click="clearWishlist()"
+        >
           <i class="fas fa-trash-alt"></i>
           Clear Wishlist
         </span>
@@ -124,7 +131,7 @@
       </div>
       <div class="d-flex justify-content-between title">
         <h5>shopping cart :</h5>
-        <span v-if="cart.length" style="cursor:pointer" @click="clearCart()">
+        <span v-if="cart.length" style="cursor: pointer" @click="clearCart()">
           <i class="fas fa-trash-alt"></i>
           Clear Cart
         </span>
@@ -164,9 +171,6 @@
           </div>
         </div>
         <div class="check-out">
-          <button style="margin-bottom: 25px" class="btn btn-checkout">
-            Checkout
-          </button>
           <button class="btn btn-view-cart">
             <router-link @click="scrollToTop()" to="/cart"
               >View Cart</router-link
@@ -225,6 +229,7 @@ export default {
     return {
       cart: [],
       favourites: [],
+      idUser: null,
     };
   },
   methods: {
@@ -235,17 +240,49 @@ export default {
       axios.delete(`http://localhost:3000/favourites/${item.id}`);
     },
     clearCart() {
-      if (confirm('Do you want to clear all of the items ?')) {
+      if (confirm("Do you want to clear all of the items ?")) {
         axios.delete("http://localhost:3000/cart");
       } else return false;
     },
     clearWishlist() {
-      if (confirm('Do you want to clear all of the items ?')) {
+      if (confirm("Do you want to clear all of the items ?")) {
         axios.delete("http://localhost:3000/favourites");
       } else return false;
     },
     scrollToTop() {
       window.scrollTo(0, 0);
+    },
+    makeOrder() {
+      this.cart.map((item) => { 
+        var noti = axios.post("http://localhost:3000/orders", {
+          user_id: this.idUser,
+          order_details_name: item.name,
+          order_details_price: item.price,
+          order_details_quantity: item.quantity,
+        });
+        if (noti) {
+          axios.delete("http://localhost:3000/cart")
+        }
+      });
+    },
+    getUser() {
+      var token = localStorage.getItem("token");
+      axios
+        .get("http://localhost:3000/accounts/get", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.myData) {
+            this.idUser = response.data.myData.id;
+          }
+        });
+    },
+    refreshUser() {
+      setInterval(() => {
+        this.getUser();
+      }, 100);
     },
   },
   computed: {
@@ -267,6 +304,8 @@ export default {
     this.refreshCart();
     this.favouritesApi();
     this.refreshFavourites();
+    this.getUser();
+    this.refreshUser();
   },
 };
 </script>
