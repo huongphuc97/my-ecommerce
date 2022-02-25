@@ -239,7 +239,7 @@ module.exports = function (app) {
         })
     })
 
-    app.post('/products', upload.single('image'), function (request, response) {
+    app.post('/products', upload.single('image'),authPage('admin'), function (request, response) {
         const file = request.file;
         if (file) {
             request.body.image = file.filename;
@@ -252,7 +252,11 @@ module.exports = function (app) {
         })
     })
     
-    app.put('/products/:id',authPage('admin'), function (request, response) {
+    app.put('/products/:id',upload.single('image'),authPage('admin'), function (request, response) {
+        const file = request.file;
+        if (file) {
+            request.body.image = file.filename;
+        }
         let sql = 'UPDATE product SET ? WHERE id = ?';
         conn.query(sql, [request.body, request.params.id], function (err, data) {
             response.send({

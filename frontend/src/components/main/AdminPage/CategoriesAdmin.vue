@@ -19,7 +19,7 @@
       <!-- Button trigger modal -->
       <button
         type="button"
-        class="btn btn-primary btn-lg"
+        class="btn btn-primary"
         data-toggle="modal"
         data-target="#modelId"
       >
@@ -54,8 +54,6 @@
                   <label for="">Name</label>
                   <input
                     type="text"
-                    name=""
-                    id=""
                     class="form-control"
                     v-model="name"
                   />

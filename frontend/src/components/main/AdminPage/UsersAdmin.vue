@@ -22,6 +22,7 @@
             <td>{{ moment(acc.last_login, moment.ISO_8601) }}</td>
             <td>
               <button
+                v-if="acc.role != 'admin'"
                 @click="editUser(acc)"
                 class="btn btn-primary mr-3"
                 data-toggle="modal"
@@ -29,7 +30,11 @@
               >
                 Edit
               </button>
-              <button @click="deleteUser(acc)" class="btn btn-danger">
+              <button
+                v-if="acc.role != 'admin'"
+                @click="deleteUser(acc)"
+                class="btn btn-danger"
+              >
                 Delete
               </button>
             </td>
@@ -67,8 +72,6 @@
                 <label for="">ID</label>
                 <input
                   type="text"
-                  name=""
-                  id=""
                   :placeholder="this.modalData.id"
                   class="form-control"
                   v-model="idModal"
@@ -79,8 +82,6 @@
                 <label for="">Username</label>
                 <input
                   type="text"
-                  name="name"
-                  id=""
                   :placeholder="this.modalData.username"
                   class="form-control"
                   v-model="usernameModal"
@@ -90,8 +91,6 @@
                 <label for="">Password</label>
                 <input
                   type="text"
-                  name=""
-                  id=""
                   :placeholder="this.modalData.password"
                   class="form-control"
                   v-model="passwordModal"
@@ -101,8 +100,6 @@
                 <label for="">Role</label>
                 <input
                   type="text"
-                  name="price"
-                  id=""
                   :placeholder="this.modalData.role"
                   class="form-control"
                   v-model="roleModal"
@@ -170,10 +167,7 @@ export default {
           },
         }
       );
-      if (notify) {
-        alert("User edited");
-        this.refreshUser();
-      }
+      this.refreshUser();
     },
   },
   mounted() {
