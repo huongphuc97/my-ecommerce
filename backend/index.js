@@ -16,7 +16,7 @@ const path = require("path");
 
 // const parseForm = bodyParser.urlencoded({ extended: false });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
@@ -30,10 +30,12 @@ require("./routes/admin/AdminRoute")(app);
 require("./routes/authen")(app);
 require("./routes/category")(app);
 require("./routes/favourite")(app);
-require("./routes/product")(app);
+const product = require("./routes/product");
 require("./routes/cart")(app);
 require("./routes/review")(app);
 require("./routes/order")(app);
+
+app.use("/routes/product", product);
 
 app.listen(PORT, function () {
   console.log("http://localhost:3000");
