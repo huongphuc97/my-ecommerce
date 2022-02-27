@@ -126,4 +126,17 @@ $(document).ready(function () {
   transform: translate(-60%, -80%);
   font-size: 15px;
 }
+@media screen and (min-width: 625px) and (max-width: 800px) {
+  .content-1,
+  .content-2 {
+    font-size: 13px !important;
+    border: none !important;
+  }
+}
+@media screen and (max-width: 624px) {
+  .content-1,
+  .content-2 {
+    display: none;
+  }
+}
 </style>

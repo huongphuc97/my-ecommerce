@@ -14,7 +14,7 @@
       <div
         v-for="m in men"
         :key="m.id"
-        class="col-md-3 mt-5 clothes activated no-border"
+        class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes activated no-border"
       >
         <div class="card text-left">
           <img
@@ -26,7 +26,10 @@
             <button @click="addFavourite(m, 1)" class="button-right">
               <i class="icon far fa-heart"></i>
             </button>
-            <router-link @click="this.scrollToTop()" :to="`/detail/${m.name}/${m.id}`">
+            <router-link
+              @click="this.scrollToTop()"
+              :to="`/detail/${m.name}/${m.id}`"
+            >
               <button class="button-right">
                 <i class="icon fas fa-expand"></i>
               </button>
@@ -45,7 +48,7 @@
       </div>
     </div>
     <div id="items-women" class="row">
-      <div v-for="w in women" :key="w.id" class="col-md-3 mt-5 clothes">
+      <div v-for="w in women" :key="w.id" class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes">
         <div class="card text-left">
           <img
             class="card-img-top"
@@ -56,7 +59,10 @@
             <button @click="addFavourite(w, 1)" class="button-right">
               <i class="icon far fa-heart"></i>
             </button>
-            <router-link @click="this.scrollToTop()" :to="`/detail/${w.name}/${w.id}`">
+            <router-link
+              @click="this.scrollToTop()"
+              :to="`/detail/${w.name}/${w.id}`"
+            >
               <button class="button-right">
                 <i class="icon fas fa-expand"></i>
               </button>
@@ -75,7 +81,7 @@
       </div>
     </div>
     <div id="items-others" class="row">
-      <div v-for="o in others" :key="o.id" class="col-md-3 mt-5 clothes">
+      <div v-for="o in others" :key="o.id" class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes">
         <div class="card text-left">
           <img
             class="card-img-top"
@@ -86,7 +92,10 @@
             <button @click="addFavourite(o, 1)" class="button-right">
               <i class="icon far fa-heart"></i>
             </button>
-            <router-link @click="this.scrollToTop()" :to="`/detail/${o.name}/${o.id}`">
+            <router-link
+              @click="this.scrollToTop()"
+              :to="`/detail/${o.name}/${o.id}`"
+            >
               <button class="button-right">
                 <i class="icon fas fa-expand"></i>
               </button>
@@ -96,7 +105,7 @@
             <button @click="addCart(o, 1)" class="btn-detail">
               Add To Cart
             </button>
-          </div>    
+          </div>
           <div class="card-body text-center">
             <h4 class="card-title">{{ o.name }}</h4>
             <p class="card-text">$ {{ o.price }}</p>
@@ -132,7 +141,7 @@ export default {
       });
       if (foundItem) {
         axios.put(`http://localhost:3000/cart/${foundItem.id}`, {
-          quantity: (foundItem.quantity += quantity1),
+          quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
         axios.post("http://localhost:3000/cart", {

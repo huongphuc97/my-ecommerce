@@ -1,12 +1,15 @@
 <template>
   <div class="upper-header">
-    <div class="container d-flex justify-content-between">
-      <ul class="upper-ul">
+    <div
+      style="position: relative"
+      class="container d-flex justify-content-between"
+    >
+      <ul class="upper-ul phone-number">
         <li>
           <p class="">Call us: 09999999999999</p>
         </li>
       </ul>
-      <ul class="upper-ul">
+      <ul class="upper-ul account">
         <li>
           <router-link @click="this.scrollToTop()" to="/account">
             <p class="upper-content before-none">
@@ -29,7 +32,6 @@
             </p></router-link
           >
         </li>
-
         <li v-if="!this.username" class="">
           <router-link @click="this.scrollToTop()" to="/register">
             <p class="upper-content">
@@ -111,20 +113,24 @@ li .icon {
   color: #dedede;
 }
 .upper-header ul li p {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 100;
 }
 .upper-header ul li .upper-content::before {
-  content: "|";
+  content: "|"; 
   display: inline-block;
-  margin: 0 30px;
+  margin: 0 20px;
 }
 .before-none::before {
   content: none !important;
 }
-.logo-brand {
-  flex: 0 0 20%;
-  max-width: 20%;
-  position: relative;
+@media screen and (min-width: 300px) and (max-width: 580px) {
+  .phone-number {
+    display: none;
+  }
+  .account {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

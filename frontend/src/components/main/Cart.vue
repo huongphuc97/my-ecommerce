@@ -24,7 +24,7 @@
             </router-link>
           </p>
         </div>
-        <div v-else class="cart-has-items">
+        <div v-else class="cart-has-items mb-5">
           <div class="row">
             <div class="col-md-12">
               <div class="table-border border-bottom">
@@ -62,10 +62,15 @@
               </div>
             </div>
           </div>
-          <div class="text-center">
+          <div v-if="this.idUser" class="text-center mb-5">
             <button @click="makeOrder()" class="btn btn-success">
               Make order
             </button>
+          </div>
+          <div v-else-if="!this.idUser" class="text-center mb-5">
+            <router-link @click="scrollToTop()" class="nav-link" to="/login">
+              Please login to make order</router-link
+            >
           </div>
         </div>
       </div>
@@ -79,6 +84,7 @@ export default {
   data() {
     return {
       cart: [],
+      idUser: null,
     };
   },
   methods: {
@@ -95,6 +101,7 @@ export default {
         });
         if (noti) {
           axios.delete("http://localhost:3000/cart");
+          this.$router.push("/account");
         }
       });
     },

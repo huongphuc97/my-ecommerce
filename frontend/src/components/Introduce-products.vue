@@ -1,33 +1,31 @@
 <template>
   <div class="mt-5 mb-5">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-4 mb-4">
         <div class="product-1 mb-4">
-          <img
+          <img width="100%"
             src="https://andshop-vue.netlify.app/_nuxt/img/woman.3e56b7a.png"
             alt=""
           />
           <div class="content-1">
-            <h4>outerwear</h4>
             <h2>new</h2>
             <h3>collection</h3>
             <button>shop now</button>
           </div>
         </div>
         <div class="product-2">
-          <img
+          <img width="100%"
             src="https://andshop-vue.netlify.app/_nuxt/img/woman1.f456ab6.png"
             alt=""
           />
           <div class="content-2">
-            <h4>summer</h4>
             <h2>hot</h2>
             <h3>collection</h3>
             <button>shop now</button>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-4 mb-4">
         <div class="product">
           <img
             width="100%"
@@ -42,9 +40,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 content-right">
+      <div class="col-lg-4 content-right">
         <div class="product-1 mb-4">
           <img
+          width="100%"
             src="https://andshop-vue.netlify.app/_nuxt/img/woman4.26b67d7.png"
             alt=""
           />
@@ -56,6 +55,7 @@
         </div>
         <div class="product-2">
           <img
+          width="100%"
             src="https://andshop-vue.netlify.app/_nuxt/img/kids.5fb714a.png"
             alt=""
           />

@@ -66,9 +66,7 @@ setInterval(function () {
 ul li {
   border: 1px solid #c5c5c5;
   width: 100px;
-  /* height: 70px; */
   padding-top: 10px;
-  /* margin-top: 30px; */
   font-size: 14px;
 }
 button {
@@ -78,5 +76,15 @@ button {
   text-transform: uppercase;
   border: none;
   margin-top: 2px;
+}
+@media screen and (min-width: 810) and (max-width: 1000px) {
+  .background {
+    padding: 300px 0;
+  }
+}
+@media screen and (max-width: 809px) {
+  .background {
+    display: none;
+  }
 }
 </style>

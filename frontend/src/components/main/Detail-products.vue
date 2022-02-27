@@ -113,6 +113,7 @@
                     <vue-number-input
                       v-model="value"
                       :min="1"
+                      :max="2"
                       @update:model-value="onUpdate"
                       @input="onInput"
                       inline

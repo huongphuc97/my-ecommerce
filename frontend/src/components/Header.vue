@@ -1,20 +1,25 @@
 <template>
   <div>
-    <div class="nav-menu">
+    <div class="nav-menu col-md-12 col-xs-12">
       <div
         style=""
         class="container d-flex justify-content-between align-items-center"
       >
+        <button class="mobile-button-nav">
+          <i style="font-size: 20px" class="fas fa-bars"></i>
+        </button>
         <div class="logo-brand">
-          <img
-            src="https://andshop-vue.netlify.app/_nuxt/img/logo.f486653.png"
-            alt=""
-          />
+          <router-link @click="scrollToTop()" class="" to="/">
+            <img
+              src="https://andshop-vue.netlify.app/_nuxt/img/logo.f486653.png"
+              alt=""
+            />
+          </router-link>
         </div>
         <nav class="nav-left">
           <ul>
             <li>
-              <router-link @click="scrollToTop()" class="nav-link active" to="/"
+              <router-link @click="scrollToTop()" class="nav-link" to="/"
                 >Home</router-link
               >
             </li>
@@ -41,24 +46,24 @@
             </li>
             <li>
               <router-link @click="scrollToTop()" class="nav-link" to="/track"
-                >Tracking order</router-link
+                >Order</router-link
               >
             </li>
           </ul>
         </nav>
         <nav class="nav-right">
           <ul class="">
-            <li
-              style="padding-right: 14px; cursor: pointer"
-              class="wish-list-btn-slide"
-            >
-              <i style="font-size: 20px" class="icon fas fa-heart"></i>
+            <li style="cursor: pointer" class="wish-list-btn-slide">
+              <i style="font-size: 20px" class="iconTools fas fa-heart"></i>
               <span class="number number-wish-list">{{
                 favourites.length
               }}</span>
             </li>
             <li style="cursor: pointer" class="btn-slide">
-              <i style="font-size: 20px" class="icon fas fa-shopping-cart"></i>
+              <i
+                style="font-size: 20px"
+                class="iconTools fas fa-shopping-cart"
+              ></i>
               <span class="number number-cart">{{ totalQuantityCart }}</span>
             </li>
           </ul>
@@ -191,6 +196,7 @@ $(document).ready(function () {
   $(window).scroll(function () {
     if (window.scrollY > 0) {
       $(".nav-menu").addClass("sticky");
+      // $('.nav-left').css("margin-top", "0");
     } else $(".nav-menu").removeClass("sticky");
   });
 
@@ -220,6 +226,9 @@ $(document).ready(function () {
   });
   $(".cls").click(function () {
     $cart.toggleClass("is-active");
+  });
+  $(".mobile-button-nav").click(function () {
+    $(".nav-left").slideToggle(400);
   });
 });
 import axios from "axios";
@@ -253,7 +262,7 @@ export default {
       window.scrollTo(0, 0);
     },
     makeOrder() {
-      this.cart.map((item) => { 
+      this.cart.map((item) => {
         var noti = axios.post("http://localhost:3000/orders", {
           user_id: this.idUser,
           order_details_name: item.name,
@@ -261,7 +270,7 @@ export default {
           order_details_quantity: item.quantity,
         });
         if (noti) {
-          axios.delete("http://localhost:3000/cart")
+          axios.delete("http://localhost:3000/cart");
         }
       });
     },
@@ -318,20 +327,28 @@ li {
 }
 li a {
   color: #444444;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500px;
   padding: 15px;
 }
-.logo-brand {
+.nav-menu {
+  position: relative;
+}
+.logo-brand,
+.mobile-button-nav {
   display: flex;
   align-items: center;
+}
+.mobile-button-nav {
+  display: none;
+  padding-right: 15px;
 }
 .nav-left {
   display: flex;
   align-items: center;
 }
 .nav-left li {
-  padding: 0 40px;
+  padding: 0 16px;
 }
 .nav-right {
   position: relative;
@@ -349,9 +366,7 @@ li a {
   left: 0;
   width: 100%;
   transition: 0.5s;
-  /* padding-top: 10px; */
   background-color: #fff;
-  text-align: center;
   z-index: 999;
 }
 .sticky {
@@ -525,5 +540,39 @@ h5 {
 }
 .btn-view-cart a {
   color: #000;
+}
+@media screen and (min-width: 200px) and (max-width: 999px) {
+  .mobile-button-nav {
+    display: block;
+  }
+  .nav-left {
+    position: absolute;
+    top: 70px;
+    left: -12px;
+    display: none;
+    background-color: #fff;
+    width: 100%;
+    margin-left: 12px;
+  }
+  .nav-left li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+}
+@media screen and (max-width: 500px) {
+  img {
+    width: 200px;
+  }
+  .nav-left {
+    margin-top: -12px;
+  }
+}
+@media screen and (max-width: 380px) {
+  img {
+    width: 140px;
+  }
+  .nav-left {
+    margin-top: -30px;
+  }
 }
 </style>

@@ -10,7 +10,11 @@
         <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
       </div>
       <div class="row">
-        <div v-for="item in info" :key="item.id" class="col-md-3 mt-5 clothe">
+        <div
+          v-for="item in info"
+          :key="item.id"
+          class="col-lg-3 col-md-6 mt-5 clothe"
+        >
           <div class="card text-left">
             <img
               class="card-img-top"
@@ -201,5 +205,10 @@ export default {
 img {
   width: 100%;
   height: 350px;
+}
+@media screen and (max-width: 1250px) {
+  img {
+    height: unset;
+  }
 }
 </style>

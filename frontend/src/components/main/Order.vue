@@ -5,7 +5,7 @@
       <div class="info">
         <div class="row">
           <div class="col-7">
-            <span id="heading">Date</span><br />
+            <span id="heading">Created at</span><br />
             <span id="details">{{ this.orderDetails.created }}</span>
           </div>
           <div class="col-5 pull-right">

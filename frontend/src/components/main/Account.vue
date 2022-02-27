@@ -5,15 +5,6 @@
         <div class="row">
           <div class="col-md-6">
             <div class="jumbotron">
-              <p class="lead">Welcome back {{ this.username }}</p>
-              <hr class="my-2" />
-              <p>Your role is {{ this.role }}</p>
-              <p>Created at {{ moment(this.created_at, moment.ISO_8601) }}</p>
-              <p>Last login {{ moment(this.last_login, moment.ISO_8601) }}</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="jumbotron">
               <p class="lead">Your orders</p>
               <hr class="my-2" />
               <table class="table">
@@ -39,6 +30,15 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+           <div class="col-md-6">
+            <div class="jumbotron">
+              <p class="lead">Welcome back {{ this.username }}</p>
+              <hr class="my-2" />
+              <p>Your role is {{ this.role }}</p>
+              <p>Created at {{ moment(this.created_at, moment.ISO_8601) }}</p>
+              <p>Last login {{ moment(this.last_login, moment.ISO_8601) }}</p>
             </div>
           </div>
         </div>

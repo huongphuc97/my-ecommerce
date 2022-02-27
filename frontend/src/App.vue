@@ -33,6 +33,7 @@ export default {
   font-family: "Rubik", "Source Sans Pro", "HelveticaNeue-Light",
     "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
     sans-serif;
+    overflow: hidden;
 }
 .row {
   margin-left: 0 !important;

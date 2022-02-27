@@ -10,7 +10,7 @@
         </form>
       </div>
     </div>
-    <div v-if="orders.length" class="has-order">
+    <div v-if="orders.length >= 1" class="has-order">
       <div class="container center">
         <div class="row">
           <div class="col-md-6">
@@ -28,9 +28,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div v-if="!this.orders" class="has-no-order">
-      <p class="text-center">No result</p>
     </div>
   </div>
 </template>
