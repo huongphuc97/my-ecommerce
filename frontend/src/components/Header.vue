@@ -96,7 +96,7 @@
           <li v-for="f in favourites" :key="f.id">
             <div class="product-image">
               <img
-                :src="`http://localhost:3000/public/image/products/${f.image}`"
+                :src="`https://api-ecm.herokuapp.com/public/image/products/${f.image}`"
                 alt=""
               />
             </div>
@@ -149,7 +149,7 @@
           <li v-for="c in cart" :key="c.id">
             <div class="product-image">
               <img
-                :src="`http://localhost:3000/public/image/products/${c.image}`"
+                :src="`https://api-ecm.herokuapp.com/public/image/products/${c.image}`"
                 alt=""
               />
             </div>
@@ -243,19 +243,19 @@ export default {
   },
   methods: {
     deleteItemCart(item) {
-      axios.delete(`http://localhost:3000/cart/${item.id}`);
+      axios.delete(`https://api-ecm.herokuapp.com/cart/${item.id}`);
     },
     deleteItemFavourite(item) {
-      axios.delete(`http://localhost:3000/favourites/${item.id}`);
+      axios.delete(`https://api-ecm.herokuapp.com/favourites/${item.id}`);
     },
     clearCart() {
       if (confirm("Do you want to clear all of the items ?")) {
-        axios.delete("http://localhost:3000/cart");
+        axios.delete("https://api-ecm.herokuapp.com/cart");
       } else return false;
     },
     clearWishlist() {
       if (confirm("Do you want to clear all of the items ?")) {
-        axios.delete("http://localhost:3000/favourites");
+        axios.delete("https://api-ecm.herokuapp.com/favourites");
       } else return false;
     },
     scrollToTop() {
@@ -263,21 +263,21 @@ export default {
     },
     makeOrder() {
       this.cart.map((item) => {
-        var noti = axios.post("http://localhost:3000/orders", {
+        var noti = axios.post("https://api-ecm.herokuapp.com/orders", {
           user_id: this.idUser,
           order_details_name: item.name,
           order_details_price: item.price,
           order_details_quantity: item.quantity,
         });
         if (noti) {
-          axios.delete("http://localhost:3000/cart");
+          axios.delete("https://api-ecm.herokuapp.com/cart");
         }
       });
     },
     getUser() {
       var token = localStorage.getItem("token");
       axios
-        .get("http://localhost:3000/accounts/get", {
+        .get("https://api-ecm.herokuapp.com/accounts/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

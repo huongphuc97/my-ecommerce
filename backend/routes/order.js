@@ -31,10 +31,12 @@ module.exports = function (app) {
   });
 
   app.post("/orders", function (request, response) {
-    let sql = "INSERT INTO orders SET ?";
+    let sql = "INSERT INTO orders SET ? WHERE user_id =?",;
     conn.query(sql, request.body, function (err, data) {
-      response.send({
-        result: data,
+      conn.query('UPDATE orders SET order_code = SUBSTRING(MD5(RAND())FROM 1 FOR 14)', request.params.id, function (err2, data2){
+        response.send({
+          result: data,
+        })
       });
     });
   });

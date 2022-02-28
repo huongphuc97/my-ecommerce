@@ -19,7 +19,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`http://localhost:3000/public/image/products/${m.image}`"
+            :src="`https://api-ecm.herokuapp.com/image/products/${m.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -48,11 +48,15 @@
       </div>
     </div>
     <div id="items-women" class="row">
-      <div v-for="w in women" :key="w.id" class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes">
+      <div
+        v-for="w in women"
+        :key="w.id"
+        class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes"
+      >
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`http://localhost:3000/public/image/products/${w.image}`"
+            :src="`https://api-ecm.herokuapp.com/image/products/${w.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -81,11 +85,15 @@
       </div>
     </div>
     <div id="items-others" class="row">
-      <div v-for="o in others" :key="o.id" class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes">
+      <div
+        v-for="o in others"
+        :key="o.id"
+        class="col-lg-3 col-md-6 col-xs-12 mt-5 clothes"
+      >
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`http://localhost:3000/public/image/products/${o.image}`"
+            :src="`https://api-ecm.herokuapp.com/image/products/${o.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -140,11 +148,11 @@ export default {
         return item.id == product.id;
       });
       if (foundItem) {
-        axios.put(`http://localhost:3000/cart/${foundItem.id}`, {
+        axios.put(`https://api-ecm.herokuapp.com/cart/${foundItem.id}`, {
           quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
-        axios.post("http://localhost:3000/cart", {
+        axios.post("https://api-ecm.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -164,7 +172,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in wishlist");
       } else {
-        axios.post("http://localhost:3000/favourites", {
+        axios.post("https://api-ecm.herokuapp.com/favourites", {
           id: product.id,
           name: product.name,
           price: product.price,

@@ -22,7 +22,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
         methods: {
             productsApi() {
                 axios
-                    .get("http://localhost:3000/products")
+                    .get("https://api-ecm.herokuapp.com/products")
                     .then((response) => (this.products = response.data.myData));
             },
             refreshProductsApi() {
@@ -32,7 +32,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             menApi() {
                 axios
-                    .get("http://localhost:3000/products/men")
+                    .get("https://api-ecm.herokuapp.com/products/men")
                     .then((response) => (this.men = response.data.myData));
             },
             refreshMen() {
@@ -42,7 +42,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             womenApi() {
                 axios
-                    .get("http://localhost:3000/products/women")
+                    .get("https://api-ecm.herokuapp.com/products/women")
                     .then((response) => (this.women = response.data.myData));
             },
             refreshWomen() {
@@ -52,7 +52,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             othersApi() {
                 axios
-                    .get("http://localhost:3000/products/others")
+                    .get("https://api-ecm.herokuapp.com/products/others")
                     .then((response) => (this.others = response.data.myData));
             },
             refreshOthers() {
@@ -62,11 +62,11 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             cartApi() {
                 axios
-                    .get("http://localhost:3000/cart")
+                    .get("https://api-ecm.herokuapp.com/cart")
                     .then((response) => (this.cart = response.data.myData));
             },
             categoryApi() {
-                axios.get("http://localhost:3000/categories")
+                axios.get("https://api-ecm.herokuapp.com/categories")
                     .then((response) => (this.categories = response.data.myData));
             },
             refreshCategoryApi() {
@@ -81,12 +81,12 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             favouritesApi() {
                 axios
-                    .get("http://localhost:3000/favourites")
+                    .get("https://api-ecm.herokuapp.com/favourites")
                     .then((response) => (this.favourites = response.data.myData));
             },
             accountsApi() {
                 axios
-                    .get("http://localhost:3000/accounts")
+                    .get("https://api-ecm.herokuapp.com/accounts")
                     .then((response) => (this.accounts = response.data.myData));
             },
             refreshUser() {
@@ -101,7 +101,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             reviewApi() {
                 axios
-                    .get("http://localhost:3000/review")
+                    .get("https://api-ecm.herokuapp.com/review")
                     .then((response) => (this.review = response.data.myData));
             },
             refreshReview() {
@@ -111,22 +111,22 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             },
             sortNewestApi() {
                 axios
-                    .get("http://localhost:3000/products/sort/newest")
+                    .get("https://api-ecm.herokuapp.com/products/sort/newest")
                     .then((response) => (this.newest = response.data.myData));
             },
             sortOldestApi() {
                 axios
-                    .get("http://localhost:3000/products/sort/oldest")
+                    .get("https://api-ecm.herokuapp.com/products/sort/oldest")
                     .then((response) => (this.oldest = response.data.myData));
             },
             sortHighPriceApi() {
                 axios
-                    .get("http://localhost:3000/products/sort/highprice")
+                    .get("https://api-ecm.herokuapp.com/products/sort/highprice")
                     .then((response) => (this.highPrice = response.data.myData));
             },
             sortLowPriceApi() {
                 axios
-                    .get("http://localhost:3000/products/sort/lowprice")
+                    .get("https://api-ecm.herokuapp.com/products/sort/lowprice")
                     .then((response) => (this.lowPrice = response.data.myData));
             },
             scrollToTop() {

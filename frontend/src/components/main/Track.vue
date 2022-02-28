@@ -44,7 +44,7 @@ export default {
   methods: {
     getOrder() {
       axios
-        .get(`http://localhost:3000/orders/get/${this.orderCode}`)
+        .get(`https://api-ecm.herokuapp.com/orders/get/${this.orderCode}`)
         .then((response) => (this.orders = response.data.myData));
     },
   },
