@@ -25,41 +25,41 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                     .get("https://api-ecm.herokuapp.com/products")
                     .then((response) => (this.products = response.data.myData));
             },
-            refreshProductsApi() {
-                setInterval(() => {
-                    this.productsApi();
-                }, 100);
-            },
+            // refreshProductsApi() {
+            //     setInterval(() => {
+            //         this.productsApi();
+            //     }, 100);
+            // },
             menApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/products/men")
                     .then((response) => (this.men = response.data.myData));
             },
-            refreshMen() {
-                setInterval(() => {
-                    this.menApi();
-                }, 100);
-            },
+            // refreshMen() {
+            //     setInterval(() => {
+            //         this.menApi();
+            //     }, 100);
+            // },
             womenApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/products/women")
                     .then((response) => (this.women = response.data.myData));
             },
-            refreshWomen() {
-                setInterval(() => {
-                    this.womenApi();
-                }, 100);
-            },
+            // refreshWomen() {
+            //     setInterval(() => {
+            //         this.womenApi();
+            //     }, 100);
+            // },
             othersApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/products/others")
                     .then((response) => (this.others = response.data.myData));
             },
-            refreshOthers() {
-                setInterval(() => {
-                    this.othersApi();
-                }, 100);
-            },
+            // refreshOthers() {
+            //     setInterval(() => {
+            //         this.othersApi();
+            //     }, 100);
+            // },
             cartApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/cart")
@@ -69,16 +69,16 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                 axios.get("https://api-ecm.herokuapp.com/categories")
                     .then((response) => (this.categories = response.data.myData));
             },
-            refreshCategoryApi() {
-                setInterval(() => {
-                    this.categoryApi();
-                }, 100);
-            },
-            refreshCart() {
-                setInterval(() => {
-                    this.cartApi();
-                }, 100);
-            },
+            // refreshCategoryApi() {
+            //     setInterval(() => {
+            //         this.categoryApi();
+            //     }, 100);
+            // },
+            // refreshCart() {
+            //     setInterval(() => {
+            //         this.cartApi();
+            //     }, 100);
+            // },
             favouritesApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/favourites")
@@ -89,26 +89,26 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
                     .get("https://api-ecm.herokuapp.com/accounts")
                     .then((response) => (this.accounts = response.data.myData));
             },
-            refreshUser() {
-                setInterval(() => {
-                    this.accountsApi();
-                }, 100);
-            },
-            refreshFavourites() {
-                setInterval(() => {
-                    this.favouritesApi();
-                }, 100);
-            },
+            // refreshUser() {
+            //     setInterval(() => {
+            //         this.accountsApi();
+            //     }, 100);
+            // },
+            // refreshFavourites() {
+            //     setInterval(() => {
+            //         this.favouritesApi();
+            //     }, 100);
+            // },
             reviewApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/review")
                     .then((response) => (this.review = response.data.myData));
             },
-            refreshReview() {
-                setInterval(() => {
-                    this.reviewApi();
-                }, 100);
-            },
+            // refreshReview() {
+            //     setInterval(() => {
+            //         this.reviewApi();
+            //     }, 100);
+            // },
             sortNewestApi() {
                 axios
                     .get("https://api-ecm.herokuapp.com/products/sort/newest")

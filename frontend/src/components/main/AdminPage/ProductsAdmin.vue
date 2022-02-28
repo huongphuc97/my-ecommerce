@@ -139,7 +139,7 @@
             <td>
               <img
                 class="card-img-top"
-                :src="`https://api-ecm.herokuapp.com/public/image/products/${pro.image}`"
+                :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${pro.image}`"
                 alt=""
               />
             </td>
@@ -320,7 +320,7 @@ export default {
       fd.append("category_id", this.category_idNew);
       fd.append("description", this.descriptionNew);
       fd.append("quantity", this.quantityNew);
-      axios.post("https://api-ecm.herokuapp.com/products", fd, {
+      axios.post("https://get-api-ecommerce-pj.herokuapp.com/products", fd, {
         params: { role: this.role },
       });
     },
@@ -328,7 +328,7 @@ export default {
       this.modalData = product;
     },
     deleteProduct(product) {
-      axios.delete(`https://api-ecm.herokuapp.com/products/${product.id}`);
+      axios.delete(`https://get-api-ecommerce-pj.herokuapp.com/products/${product.id}`);
       this.refreshProductsApi();
     },
     fileEdit(e) {
@@ -356,7 +356,7 @@ export default {
         "quantity",
         this.quantity ? this.quantity : this.modalData.quantity
       );
-      axios.put(`https://api-ecm.herokuapp.com/products/${this.modalData.id}`, f, {
+      axios.put(`https://get-api-ecommerce-pj.herokuapp.com/products/${this.modalData.id}`, f, {
         params: { role: this.role },
       });
       this.refreshProductsApi();
@@ -365,7 +365,7 @@ export default {
   mounted() {
     var token = localStorage.getItem("token");
     axios
-      .get("https://api-ecm.herokuapp.com/accounts/get", {
+      .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -378,7 +378,7 @@ export default {
           this.last_login = response.data.myData.last_login;
         }
         axios
-          .get("https://api-ecm.herokuapp.com/products/admin", {
+          .get("https://get-api-ecommerce-pj.herokuapp.com/products/admin", {
             params: {
               role: this.role,
             },

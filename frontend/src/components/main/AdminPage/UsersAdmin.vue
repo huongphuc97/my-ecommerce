@@ -212,7 +212,7 @@ export default {
   methods: {
     createUser() {
       axios.post(
-        "https://api-ecm.herokuapp.com/accounts/create",
+        "https://get-api-ecommerce-pj.herokuapp.com/accounts/create",
         {
           username: this.usernameNew,
           password: this.passwordNew,
@@ -225,7 +225,7 @@ export default {
       this.modalData = accounts;
     },
     deleteUser(accounts) {
-      axios.delete(`https://api-ecm.herokuapp.com/accounts/${accounts.id}`, {
+      axios.delete(`https://get-api-ecommerce-pj.herokuapp.com/accounts/${accounts.id}`, {
         params: {
           role: this.role,
         },
@@ -234,7 +234,7 @@ export default {
     },
     editModalData() {
       axios.put(
-        `https://api-ecm.herokuapp.com/accounts/${this.modalData.id}`,
+        `https://get-api-ecommerce-pj.herokuapp.com/accounts/${this.modalData.id}`,
         {
           username: this.usernameModal
             ? this.usernameModal
@@ -256,7 +256,7 @@ export default {
   mounted() {
     var token = localStorage.getItem("token");
     axios
-      .get("https://api-ecm.herokuapp.com/accounts/get", {
+      .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -269,7 +269,7 @@ export default {
           this.last_login = response.data.myData.last_login;
         }
         axios
-          .get("https://api-ecm.herokuapp.com/accounts/admin", {
+          .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/admin", {
             params: {
               role: this.role,
             },

@@ -71,7 +71,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://localhost:3000/orders/get/${this.code}`)
+      .get(`https://get-api-ecommerce-pj.herokuapp.com/orders/get/${this.code}`)
       .then((response) => {
         this.orderDetails = response.data.myData[0];
       });

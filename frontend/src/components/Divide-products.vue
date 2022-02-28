@@ -19,7 +19,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/public/image/products/${m.image}`"
+            :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${m.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -56,7 +56,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/public/image/products/${w.image}`"
+            :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${w.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -93,7 +93,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/public/image/products/${o.image}`"
+            :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${o.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -148,11 +148,11 @@ export default {
         return item.id == product.id;
       });
       if (foundItem) {
-        axios.put(`https://api-ecm.herokuapp.com/cart/${foundItem.id}`, {
+        axios.put(`https://get-api-ecommerce-pj.herokuapp.com/cart/${foundItem.id}`, {
           quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
-        axios.post("https://api-ecm.herokuapp.com/cart", {
+        axios.post("https://get-api-ecommerce-pj.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -172,7 +172,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in wishlist");
       } else {
-        axios.post("https://api-ecm.herokuapp.com/favourites", {
+        axios.post("https://get-api-ecommerce-pj.herokuapp.com/favourites", {
           id: product.id,
           name: product.name,
           price: product.price,

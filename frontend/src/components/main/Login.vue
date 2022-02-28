@@ -74,7 +74,7 @@ export default {
     },
     loginForm() {
       axios
-        .post("http://localhost:3000/accounts/login", {
+        .post("https://get-api-ecommerce-pj.herokuapp.com/accounts/login", {
           username: this.username,
           password: this.password,
         })
