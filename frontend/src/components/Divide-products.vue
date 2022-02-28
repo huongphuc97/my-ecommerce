@@ -202,9 +202,6 @@ export default {
     this.womenApi();
     this.othersApi();
     this.cartApi();
-    this.refreshCart();
-    this.favouritesApi();
-    this.refreshFavourites();
   },
 };
 </script>

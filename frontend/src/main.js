@@ -22,7 +22,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
         methods: {
             productsApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products")
                     .then((response) => (this.products = response.data.myData));
             },
             // refreshProductsApi() {
@@ -32,7 +32,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             menApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/men")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/men")
                     .then((response) => (this.men = response.data.myData));
             },
             // refreshMen() {
@@ -42,7 +42,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             womenApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/women")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/women")
                     .then((response) => (this.women = response.data.myData));
             },
             // refreshWomen() {
@@ -52,7 +52,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             othersApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/others")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/others")
                     .then((response) => (this.others = response.data.myData));
             },
             // refreshOthers() {
@@ -62,11 +62,11 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             cartApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/cart")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/cart")
                     .then((response) => (this.cart = response.data.myData));
             },
             categoryApi() {
-                axios.get("https://api-ecm.herokuapp.com/categories")
+                axios.get("https://get-api-ecommerce-pj.herokuapp.com/categories")
                     .then((response) => (this.categories = response.data.myData));
             },
             // refreshCategoryApi() {
@@ -81,12 +81,12 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             favouritesApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/favourites")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/favourites")
                     .then((response) => (this.favourites = response.data.myData));
             },
             accountsApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/accounts")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/accounts")
                     .then((response) => (this.accounts = response.data.myData));
             },
             // refreshUser() {
@@ -101,7 +101,7 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             reviewApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/review")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/review")
                     .then((response) => (this.review = response.data.myData));
             },
             // refreshReview() {
@@ -111,22 +111,22 @@ createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router)
             // },
             sortNewestApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/sort/newest")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/sort/newest")
                     .then((response) => (this.newest = response.data.myData));
             },
             sortOldestApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/sort/oldest")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/sort/oldest")
                     .then((response) => (this.oldest = response.data.myData));
             },
             sortHighPriceApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/sort/highprice")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/sort/highprice")
                     .then((response) => (this.highPrice = response.data.myData));
             },
             sortLowPriceApi() {
                 axios
-                    .get("https://api-ecm.herokuapp.com/products/sort/lowprice")
+                    .get("https://get-api-ecommerce-pj.herokuapp.com/products/sort/lowprice")
                     .then((response) => (this.lowPrice = response.data.myData));
             },
             scrollToTop() {
