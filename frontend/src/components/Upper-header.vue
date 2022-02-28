@@ -67,11 +67,6 @@ export default {
           }
         });
     },
-    refreshUser() {
-      setInterval(() => {
-        this.getUser();
-      }, 100);
-    },
     logOut() {
       localStorage.removeItem("token");
       this.username = null;
@@ -80,7 +75,6 @@ export default {
   },
   mounted() {
     this.getUser();
-    this.refreshUser();
   },
 };
 </script>

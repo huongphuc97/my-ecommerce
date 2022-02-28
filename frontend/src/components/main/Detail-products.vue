@@ -446,11 +446,8 @@ export default {
       });
     });
     this.cartApi();
-    this.refreshCart();
     this.favouritesApi();
-    this.refreshFavourites();
     this.reviewApi();
-    this.refreshReview();
     axios
       .get("https://get-api-ecommerce-pj.herokuapp.com/products")
       .then((response) => (this.products = response.data.myData[this.id - 1]));

@@ -104,7 +104,6 @@ export default {
       );
       if (notiSuccess) {
         alert(`Created ${this.name}`);
-        this.refreshCategoryApi();
       }
     },
   },

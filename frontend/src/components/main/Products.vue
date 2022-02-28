@@ -696,9 +696,7 @@ export default {
     this.currentPageWomen = 1;
     this.cate();
     this.cartApi();
-    this.refreshCart();
     this.favouritesApi();
-    this.refreshFavourites();
   },
 };
 </script>

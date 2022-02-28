@@ -288,11 +288,6 @@ export default {
           }
         });
     },
-    refreshUser() {
-      setInterval(() => {
-        this.getUser();
-      }, 100);
-    },
   },
   computed: {
     totalQuantityCart() {
@@ -310,11 +305,8 @@ export default {
   },
   mounted() {
     this.cartApi();
-    this.refreshCart();
     this.favouritesApi();
-    this.refreshFavourites();
     this.getUser();
-    this.refreshUser();
   },
 };
 </script>

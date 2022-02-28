@@ -117,9 +117,7 @@ export default {
   },
   mounted() {
     this.cartApi();
-    this.refreshCart();
     this.favouritesApi();
-    this.refreshFavourites();
   },
 };
 </script>

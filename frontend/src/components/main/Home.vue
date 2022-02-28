@@ -150,9 +150,7 @@ export default {
     this.currentPage = 1;
     this.getData();
     this.cartApi();
-    this.refreshCart();
     this.favouritesApi();
-    this.refreshFavourites();
   },
 };
 </script>
