@@ -19,7 +19,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/image/products/${m.image}`"
+            :src="`https://api-ecm.herokuapp.com/public/image/products/${m.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -56,7 +56,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/image/products/${w.image}`"
+            :src="`https://api-ecm.herokuapp.com/public/image/products/${w.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">
@@ -93,7 +93,7 @@
         <div class="card text-left">
           <img
             class="card-img-top"
-            :src="`https://api-ecm.herokuapp.com/image/products/${o.image}`"
+            :src="`https://api-ecm.herokuapp.com/public/image/products/${o.image}`"
             alt=""
           />
           <div class="right-buttons d-flex">

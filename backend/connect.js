@@ -1,12 +1,10 @@
 const mysql = require("mysql");
-const dbConfig = require("./db.js");
 
 const conn = mysql.createPool({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB,
-  multipleStatements: true,
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "b26c41b635b398",
+  password: "55b6d810",
+  database: "heroku_46c32b902f4dd91",
 });
 
 module.exports = conn;

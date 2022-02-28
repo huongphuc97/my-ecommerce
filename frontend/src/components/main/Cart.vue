@@ -43,7 +43,7 @@
                     <tr v-for="c in cart" :key="c.id">
                       <td scope="row">
                         <img
-                          :src="`http://localhost:3000/public/image/products/${c.image}`"
+                          :src="`https://api-ecm.herokuapp.com/public/image/products/${c.image}`"
                           alt=""
                         />
                       </td>
@@ -89,18 +89,18 @@ export default {
   },
   methods: {
     deleteItemCart(item) {
-      axios.delete(`http://localhost:3000/cart/${item.id}`);
+      axios.delete(`https://api-ecm.herokuapp.com/cart/${item.id}`);
     },
     makeOrder() {
       this.cart.map((item) => {
-        var noti = axios.post("http://localhost:3000/orders", {
+        var noti = axios.post("https://api-ecm.herokuapp.com/orders", {
           user_id: this.idUser,
           order_details_name: item.name,
           order_details_price: item.price,
           order_details_quantity: item.quantity,
         });
         if (noti) {
-          axios.delete("http://localhost:3000/cart");
+          axios.delete("https://api-ecm.herokuapp.com/cart");
           this.$router.push("/account");
         }
       });
@@ -108,7 +108,7 @@ export default {
     getUser() {
       var token = localStorage.getItem("token");
       axios
-        .get("http://localhost:3000/accounts/get", {
+        .get("https://api-ecm.herokuapp.com/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

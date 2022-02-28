@@ -79,7 +79,7 @@ export default {
   mounted() {
     var token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3000/accounts/get", {
+      .get("https://api-ecm.herokuapp.com/accounts/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -93,14 +93,14 @@ export default {
           this.last_login = response.data.myData.last_login;
         }
         axios
-          .get("http://localhost:3000/accounts/admin", {
+          .get("https://api-ecm.herokuapp.com/accounts/admin", {
             params: {
               role: this.role,
             },
           })
           .then((response) => (this.data = response.data.myData));
         axios
-          .get(`http://localhost:3000/orders/${this.idUser}`)
+          .get(`https://api-ecm.herokuapp.com/orders/${this.idUser}`)
           .then((response) => (this.orders = response.data.myData));
       });
   },

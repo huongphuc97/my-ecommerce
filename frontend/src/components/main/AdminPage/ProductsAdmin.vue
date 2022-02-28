@@ -139,7 +139,7 @@
             <td>
               <img
                 class="card-img-top"
-                :src="`http://localhost:3000/public/image/products/${pro.image}`"
+                :src="`https://api-ecm.herokuapp.com/categories/public/image/products/${pro.image}`"
                 alt=""
               />
             </td>
@@ -320,7 +320,7 @@ export default {
       fd.append("category_id", this.category_idNew);
       fd.append("description", this.descriptionNew);
       fd.append("quantity", this.quantityNew);
-      axios.post("http://localhost:3000/products", fd, {
+      axios.post("https://api-ecm.herokuapp.com/categories/products", fd, {
         params: { role: this.role },
       });
     },
@@ -328,7 +328,7 @@ export default {
       this.modalData = product;
     },
     deleteProduct(product) {
-      axios.delete(`http://localhost:3000/products/${product.id}`);
+      axios.delete(`https://api-ecm.herokuapp.com/categories/products/${product.id}`);
       this.refreshProductsApi();
     },
     fileEdit(e) {
@@ -356,7 +356,7 @@ export default {
         "quantity",
         this.quantity ? this.quantity : this.modalData.quantity
       );
-      axios.put(`http://localhost:3000/products/${this.modalData.id}`, f, {
+      axios.put(`https://api-ecm.herokuapp.com/categories/products/${this.modalData.id}`, f, {
         params: { role: this.role },
       });
       this.refreshProductsApi();
@@ -365,7 +365,7 @@ export default {
   mounted() {
     var token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3000/accounts/get", {
+      .get("https://api-ecm.herokuapp.com/categories/accounts/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -378,7 +378,7 @@ export default {
           this.last_login = response.data.myData.last_login;
         }
         axios
-          .get("http://localhost:3000/products/admin", {
+          .get("https://api-ecm.herokuapp.com/categories/products/admin", {
             params: {
               role: this.role,
             },
