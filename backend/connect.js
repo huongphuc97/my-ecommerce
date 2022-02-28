@@ -6,5 +6,5 @@ const conn = mysql.createPool({
   password: "55b6d810",
   database: "heroku_46c32b902f4dd91",
 });
-
+conn.connect();
 module.exports = conn;
