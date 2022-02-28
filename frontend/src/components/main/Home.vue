@@ -18,7 +18,7 @@
           <div class="card text-left">
             <img
               class="card-img-top"
-              :src="`http://localhost:3000/public/image/products/${item.image}`"
+              :src="`https://api-ecm.herokuapp.com/public/image/products/${item.image}`"
               alt=""
             />
             <div class="right-buttons d-flex">
@@ -95,7 +95,7 @@ export default {
     },
     async getData() {
       var response = await axios.get(
-        `http://localhost:3000/products/homepage=${this.currentPage}`
+        `https://api-ecm.herokuapp.com/products/homepage=${this.currentPage}`
       );
       var responseData = response.data;
       this.currentPage = responseData.page;
@@ -108,11 +108,11 @@ export default {
         return item.id == product.id;
       });
       if (foundItem) {
-        axios.put(`http://localhost:3000/cart/${foundItem.id}`, {
+        axios.put(`https://api-ecm.herokuapp.com/cart/${foundItem.id}`, {
           quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
-        axios.post("http://localhost:3000/cart", {
+        axios.post("https://api-ecm.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -132,7 +132,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in wishlist");
       } else {
-        axios.post("http://localhost:3000/favourites", {
+        axios.post("https://api-ecm.herokuapp.com/favourites", {
           id: product.id,
           name: product.name,
           price: product.price,
