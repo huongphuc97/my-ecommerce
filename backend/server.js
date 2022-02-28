@@ -89,7 +89,7 @@ app.post("/accounts/create", authPage("admin"), function (request, response) {
   let sql = "INSERT INTO account SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -99,7 +99,7 @@ app.put("/accounts/:id", authPage("admin"), function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -108,7 +108,7 @@ app.delete("/accounts/:id", authPage("admin"), function (request, response) {
   let sql = "DELETE FROM account WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -147,7 +147,7 @@ app.put("/cart/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -165,7 +165,7 @@ app.delete("/cart/:id", function (request, response) {
   let sql = "DELETE FROM cart WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -177,7 +177,7 @@ app.get("/categories", authPage("admin"), function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -187,7 +187,7 @@ app.get("/categories/:id", function (request, response) {
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
       myData: data[0],
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -196,7 +196,7 @@ app.post("/categories", authPage("admin"), function (request, response) {
   let sql = "INSERT INTO category SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -206,7 +206,7 @@ app.put("/categories/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -215,7 +215,7 @@ app.delete("/categories/:id", function (request, response) {
   let sql = "DELETE FROM category WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -228,7 +228,7 @@ app.get("/favourites", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -237,7 +237,7 @@ app.post("/favourites", function (request, response) {
   let sql = "INSERT INTO favourite SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -247,7 +247,7 @@ app.put("/favourites/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -256,7 +256,7 @@ app.delete("/favourites", function (request, response) {
   let sql = "DELETE FROM favourite";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -265,7 +265,7 @@ app.delete("/favourites/:id", function (request, response) {
   let sql = "DELETE FROM favourite WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -276,7 +276,7 @@ app.get("/orders", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -286,7 +286,7 @@ app.get("/orders/:id", function (request, response) {
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -321,7 +321,7 @@ app.get("/products", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -333,7 +333,7 @@ app.get("/products/search/bykey/:name", function (request, response) {
   conn.query(sql, request.params.name, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -344,7 +344,7 @@ app.get("/products/sort/newest", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -355,7 +355,7 @@ app.get("/products/sort/oldest", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -366,7 +366,7 @@ app.get("/products/sort/highprice", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -377,7 +377,7 @@ app.get("/products/sort/lowprice", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -391,7 +391,7 @@ app.get("/products/range/:from,:to", function (request, response) {
     function (err, data) {
       response.send({
         myData: data,
-        result: data.length ? 200 : "",
+        result: data
       });
     }
   );
@@ -403,7 +403,7 @@ app.get("/products/women", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -461,7 +461,7 @@ app.get("/products/men", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -471,7 +471,7 @@ app.get("/products/others", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
+      result: data
     });
   });
 });
@@ -584,7 +584,7 @@ app.post(
     let sql = "INSERT INTO product SET ?";
     conn.query(sql, request.body, function (err, data) {
       response.send({
-        result: data.length ? 200 : "",
+        result: data
       });
     });
   }
@@ -603,7 +603,7 @@ app.put(
     conn.query(sql, [request.body, request.params.id], function (err, data) {
       response.send({
         myData: data,
-        result: data.length ? 200 : "",
+        result: data
       });
     });
   }
@@ -613,7 +613,7 @@ app.delete("/products/:id", authPage("admin"), function (request, response) {
   let sql = "DELETE FROM product WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data.length ? 200 : "",
+      result: data  
     });
   });
 });
