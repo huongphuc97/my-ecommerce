@@ -1,4 +1,3 @@
-
 const csrf = require("csurf");
 
 const bodyParser = require("body-parser");
@@ -88,7 +87,7 @@ app.post("/accounts/create", authPage("admin"), function (request, response) {
   let sql = "INSERT INTO account SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -98,7 +97,7 @@ app.put("/accounts/:id", authPage("admin"), function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -107,7 +106,7 @@ app.delete("/accounts/:id", authPage("admin"), function (request, response) {
   let sql = "DELETE FROM account WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -146,7 +145,7 @@ app.put("/cart/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -164,7 +163,7 @@ app.delete("/cart/:id", function (request, response) {
   let sql = "DELETE FROM cart WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -176,7 +175,7 @@ app.get("/categories", authPage("admin"), function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -186,7 +185,7 @@ app.get("/categories/:id", function (request, response) {
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
       myData: data[0],
-      result: data
+      result: data,
     });
   });
 });
@@ -195,7 +194,7 @@ app.post("/categories", authPage("admin"), function (request, response) {
   let sql = "INSERT INTO category SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -205,7 +204,7 @@ app.put("/categories/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -214,7 +213,7 @@ app.delete("/categories/:id", function (request, response) {
   let sql = "DELETE FROM category WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -227,7 +226,7 @@ app.get("/favourites", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -236,7 +235,7 @@ app.post("/favourites", function (request, response) {
   let sql = "INSERT INTO favourite SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -246,7 +245,7 @@ app.put("/favourites/:id", function (request, response) {
   conn.query(sql, [request.body, request.params.id], function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -255,7 +254,7 @@ app.delete("/favourites", function (request, response) {
   let sql = "DELETE FROM favourite";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -264,7 +263,7 @@ app.delete("/favourites/:id", function (request, response) {
   let sql = "DELETE FROM favourite WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data
+      result: data,
     });
   });
 });
@@ -275,7 +274,7 @@ app.get("/orders", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -285,7 +284,7 @@ app.get("/orders/:id", function (request, response) {
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -303,11 +302,15 @@ app.get("/orders/get/:id", function (request, response) {
 app.post("/orders", function (request, response) {
   let sql = "INSERT INTO orders SET ?";
   conn.query(sql, request.body, function (err, data) {
-    conn.query('UPDATE orders SET order_code = SUBSTRING(MD5(RAND())FROM 1 FOR 14) WHERE user_id = ?',request.params.id, function (err2, data2){
-      response.send({
-        result: data,
-      })
-    });
+    conn.query(
+      "UPDATE orders SET order_code = SUBSTRING(MD5(RAND())FROM 1 FOR 14) WHERE user_id = ?",
+      request.params.id,
+      function (err2, data2) {
+        response.send({
+          result: data,
+        });
+      }
+    );
   });
 });
 
@@ -320,7 +323,7 @@ app.get("/products", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -332,7 +335,7 @@ app.get("/products/search/bykey/:name", function (request, response) {
   conn.query(sql, request.params.name, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -343,7 +346,7 @@ app.get("/products/sort/newest", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -354,7 +357,7 @@ app.get("/products/sort/oldest", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -365,7 +368,7 @@ app.get("/products/sort/highprice", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -376,7 +379,7 @@ app.get("/products/sort/lowprice", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -390,7 +393,7 @@ app.get("/products/range/:from,:to", function (request, response) {
     function (err, data) {
       response.send({
         myData: data,
-        result: data
+        result: data,
       });
     }
   );
@@ -402,7 +405,7 @@ app.get("/products/women", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -460,7 +463,7 @@ app.get("/products/men", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -470,7 +473,7 @@ app.get("/products/others", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -583,7 +586,7 @@ app.post(
     let sql = "INSERT INTO product SET ?";
     conn.query(sql, request.body, function (err, data) {
       response.send({
-        result: data
+        result: data,
       });
     });
   }
@@ -602,7 +605,7 @@ app.put(
     conn.query(sql, [request.body, request.params.id], function (err, data) {
       response.send({
         myData: data,
-        result: data
+        result: data,
       });
     });
   }
@@ -612,7 +615,7 @@ app.delete("/products/:id", authPage("admin"), function (request, response) {
   let sql = "DELETE FROM product WHERE id = ?";
   conn.query(sql, request.params.id, function (err, data) {
     response.send({
-      result: data  
+      result: data,
     });
   });
 });
@@ -625,7 +628,7 @@ app.get("/review", function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data
+      result: data,
     });
   });
 });
@@ -644,7 +647,79 @@ app.post("/review", function (request, response) {
   let sql = "INSERT INTO review SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
-      result: data
+      result: data,
+    });
+  });
+});
+
+app.get("/products/admin", authPage("admin"), function (request, response) {
+  let sql =
+    "SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC";
+  conn.query(sql, function (err, data) {
+    response.send({
+      myData: data,
+      result: data.length ? 200 : "",
+    });
+  });
+});
+
+app.get(
+  "/products/admin/pages=:id",
+  authPage("admin"),
+  function (request, response) {
+    conn.query("SELECT COUNT(*) FROM product", function (err, data) {
+      var perPage = 9;
+      var fullData = Object.values(data[0]);
+      fullData.forEach((totalItems) => {
+        if (request.params.id == 1) {
+          let sql =
+            "SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9";
+          conn.query(sql, function (err, data) {
+            response.send({
+              page: parseInt(request.params.id),
+              per_page: perPage,
+              total: totalItems,
+              total_pages: Math.floor(totalItems / perPage),
+              myData: data,
+            });
+          });
+        } else if (request.params.id == 2) {
+          let sql =
+            "SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9 OFFSET 9";
+          conn.query(sql, function (err, data) {
+            response.send({
+              page: parseInt(request.params.id),
+              per_page: perPage,
+              total: totalItems,
+              total_pages: Math.floor(totalItems / perPage),
+              myData: data,
+            });
+          });
+        } else {
+          let sql =
+            "SELECT p.*, c.name as category FROM product p JOIN category c ON p.category_id = c.id ORDER BY p.id ASC LIMIT 9 OFFSET " +
+            (request.params.id - 1) * 9 +
+            "";
+          conn.query(sql, function (err, data) {
+            response.send({
+              page: parseInt(request.params.id),
+              per_page: perPage,
+              total: totalItems,
+              total_pages: Math.floor(totalItems / perPage),
+              myData: data,
+            });
+          });
+        }
+      });
+    });
+  }
+);
+
+app.get("/accounts/admin", authPage("admin"), function (request, response) {
+  let sql = "SELECT * FROM account";
+  conn.query(sql, function (err, data) {
+    response.send({
+      myData: data,
     });
   });
 });

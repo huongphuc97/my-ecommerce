@@ -149,7 +149,7 @@ export default {
       });
       if (foundItem) {
         axios.put(`https://get-api-ecommerce-pj.herokuapp.com/cart/${foundItem.id}`, {
-          quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
+          quantity: (foundItem.quantity += quantity1) >= 2 ? 2 : quantity1,
         });
       } else {
         axios.post("https://get-api-ecommerce-pj.herokuapp.com/cart", {
