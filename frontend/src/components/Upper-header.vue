@@ -56,7 +56,7 @@ export default {
     getUser() {
       var token = localStorage.getItem("token");
       axios
-        .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/get", {
+        .get("https://api-for-ecm-app.herokuapp.com/accounts/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

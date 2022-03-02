@@ -560,7 +560,7 @@ export default {
           quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
-        axios.post("https://get-api-ecommerce-pj.herokuapp.com/cart", {
+        axios.post("https://api-for-ecm-app.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
