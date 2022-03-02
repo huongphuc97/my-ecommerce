@@ -649,7 +649,6 @@ app.get("/products/admin", authPage("admin"), function (request, response) {
   conn.query(sql, function (err, data) {
     response.send({
       myData: data,
-      result: data.length ? 200 : "",
     });
   });
 });
