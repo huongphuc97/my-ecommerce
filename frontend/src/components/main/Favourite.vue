@@ -42,7 +42,7 @@
                     <tr v-for="f in favourites" :key="f.id">
                       <td scope="row">
                         <img
-                          :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${f.image}`"
+                          :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${f.image}`"
                           alt=""
                         />
                       </td>
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     deleteItemFavourite(item) {
-      axios.delete(`https://get-api-ecommerce-pj.herokuapp.com/favourites/${item.id}`);
+      axios.delete(`https://api-for-ecm-app.herokuapp.com/favourites/${item.id}`);
     },
     addCart(product) {
       var foundItem = this.cart.find((item) => {
@@ -92,7 +92,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in cart");
       } else {
-        axios.post("https://get-api-ecommerce-pj.herokuapp.com/cart", {
+        axios.post("https://api-for-ecm-app.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,

@@ -92,7 +92,7 @@ export default {
   methods: {
     addCate() {
       var notiSuccess = axios.post(
-        "https://get-api-ecommerce-pj.herokuapp.com/categories",
+        "https://api-for-ecm-app.herokuapp.com/categories",
         {
           name: this.name,
         },
@@ -110,7 +110,7 @@ export default {
   mounted() {
     var token = localStorage.getItem("token");
     axios
-      .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/get", {
+      .get("https://api-for-ecm-app.herokuapp.com/accounts/get", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -123,7 +123,7 @@ export default {
           this.last_login = response.data.myData.last_login;
         }
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/categories", {
+          .get("https://api-for-ecm-app.herokuapp.com/categories", {
             params: {
               role: this.role,
             },

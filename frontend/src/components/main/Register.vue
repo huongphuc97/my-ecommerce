@@ -76,7 +76,7 @@ export default {
         return false;
       } else {
         err.style.display = "none";
-        axios.post("https://get-api-ecommerce-pj.herokuapp.com/accounts/create", {
+        axios.post("https://api-for-ecm-app.herokuapp.com/accounts/create", {
           username: this.username,
           password: this.password,
           role: "guest",

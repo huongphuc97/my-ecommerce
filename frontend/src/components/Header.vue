@@ -96,7 +96,7 @@
           <li v-for="f in favourites" :key="f.id">
             <div class="product-image">
               <img
-                :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${f.image}`"
+                :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${f.image}`"
                 alt=""
               />
             </div>
@@ -149,7 +149,7 @@
           <li v-for="c in cart" :key="c.id">
             <div class="product-image">
               <img
-                :src="`https://get-api-ecommerce-pj.herokuapp.com/public/image/products/${c.image}`"
+                :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${c.image}`"
                 alt=""
               />
             </div>
@@ -244,22 +244,22 @@ export default {
   methods: {
     deleteItemCart(item) {
       axios.delete(
-        `https://get-api-ecommerce-pj.herokuapp.com/cart/${item.id}`
+        `https://api-for-ecm-app.herokuapp.com/cart/${item.id}`
       );
     },
     deleteItemFavourite(item) {
       axios.delete(
-        `https://get-api-ecommerce-pj.herokuapp.com/favourites/${item.id}`
+        `https://api-for-ecm-app.herokuapp.com/favourites/${item.id}`
       );
     },
     clearCart() {
       if (confirm("Do you want to clear all of the items ?")) {
-        axios.delete("https://get-api-ecommerce-pj.herokuapp.com/cart");
+        axios.delete("https://api-for-ecm-app.herokuapp.com/cart");
       } else return false;
     },
     clearWishlist() {
       if (confirm("Do you want to clear all of the items ?")) {
-        axios.delete("https://get-api-ecommerce-pj.herokuapp.com/favourites");
+        axios.delete("https://api-for-ecm-app.herokuapp.com/favourites");
       } else return false;
     },
     scrollToTop() {
@@ -268,7 +268,7 @@ export default {
     makeOrder() {
       this.cart.map((item) => {
         var noti = axios.post(
-          "https://get-api-ecommerce-pj.herokuapp.com/orders",
+          "https://api-for-ecm-app.herokuapp.com/orders",
           {
             user_id: this.idUser,
             order_details_name: item.name,
@@ -277,14 +277,14 @@ export default {
           }
         );
         if (noti) {
-          axios.delete("https://get-api-ecommerce-pj.herokuapp.com/cart");
+          axios.delete("https://api-for-ecm-app.herokuapp.com/cart");
         }
       });
     },
     getUser() {
       var token = localStorage.getItem("token");
       axios
-        .get("https://get-api-ecommerce-pj.herokuapp.com/accounts/get", {
+        .get("https://api-for-ecm-app.herokuapp.com/accounts/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
