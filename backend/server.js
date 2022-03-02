@@ -1,4 +1,3 @@
-const csrf = require("csurf");
 
 const bodyParser = require("body-parser");
 
@@ -19,14 +18,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
-
-// require("./routes/admin/AdminRoute");
-// require("./routes/authen")(app);
-// require("./routes/category")(app);
-// require("./routes/favourite")(app);
-// require("./routes/cart")(app);
-// require("./routes/review")(app);
-// require("./routes/order")(app);
 
 ////// AUTHEN
 

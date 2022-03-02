@@ -243,10 +243,14 @@ export default {
   },
   methods: {
     deleteItemCart(item) {
-      axios.delete(`https://get-api-ecommerce-pj.herokuapp.com/cart/${item.id}`);
+      axios.delete(
+        `https://get-api-ecommerce-pj.herokuapp.com/cart/${item.id}`
+      );
     },
     deleteItemFavourite(item) {
-      axios.delete(`https://get-api-ecommerce-pj.herokuapp.com/favourites/${item.id}`);
+      axios.delete(
+        `https://get-api-ecommerce-pj.herokuapp.com/favourites/${item.id}`
+      );
     },
     clearCart() {
       if (confirm("Do you want to clear all of the items ?")) {
@@ -263,12 +267,15 @@ export default {
     },
     makeOrder() {
       this.cart.map((item) => {
-        var noti = axios.post("https://get-api-ecommerce-pj.herokuapp.com/orders", {
-          user_id: this.idUser,
-          order_details_name: item.name,
-          order_details_price: item.price,
-          order_details_quantity: item.quantity,
-        });
+        var noti = axios.post(
+          "https://get-api-ecommerce-pj.herokuapp.com/orders",
+          {
+            user_id: this.idUser,
+            order_details_name: item.name,
+            order_details_price: item.price,
+            order_details_quantity: item.quantity,
+          }
+        );
         if (noti) {
           axios.delete("https://get-api-ecommerce-pj.herokuapp.com/cart");
         }
@@ -291,6 +298,8 @@ export default {
   },
   computed: {
     totalQuantityCart() {
+      this.cartApi();
+      this.favouritesApi();
       return this.cart.reduce((accumulator, item) => {
         return accumulator + item.quantity;
       }, 0);
@@ -304,8 +313,6 @@ export default {
     },
   },
   mounted() {
-    this.cartApi();
-    this.favouritesApi();
     this.getUser();
   },
 };
