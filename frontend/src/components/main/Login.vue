@@ -74,7 +74,7 @@ export default {
     },
     loginForm() {
       axios
-        .post("https://api-for-ecm-app.herokuapp.com/accounts/login", {
+        .post("https://my-api-for-frontend.herokuapp.com/accounts/login", {
           username: this.username,
           password: this.password,
         })

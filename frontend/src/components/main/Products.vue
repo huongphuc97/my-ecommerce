@@ -107,7 +107,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -145,7 +145,7 @@
                 <img
                   v-if="total.image"
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -184,7 +184,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -221,7 +221,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -258,7 +258,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -295,7 +295,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -328,7 +328,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -365,7 +365,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -402,7 +402,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -439,7 +439,7 @@
               <div class="card text-left">
                 <img
                   class="card-img-top"
-                  :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${total.image}`"
+                  :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${total.image}`"
                   alt=""
                 />
                 <div class="right-buttons d-flex">
@@ -543,7 +543,7 @@ export default {
     },
     async getData() {
       var response = await axios.get(
-        `https://api-for-ecm-app.herokuapp.com/products/pages=${this.currentPage}`
+        `https://my-api-for-frontend.herokuapp.com/products/pages=${this.currentPage}`
       );
       var responseData = response.data;
       this.currentPage = responseData.page;
@@ -556,11 +556,11 @@ export default {
         return item.id == product.id;
       });
       if (foundItem) {
-        axios.put(`https://api-for-ecm-app.herokuapp.com/cart/${foundItem.id}`, {
+        axios.put(`https://my-api-for-frontend.herokuapp.com/cart/${foundItem.id}`, {
           quantity: (foundItem.quantity += quantity1) > 3 ? 1 : 2,
         });
       } else {
-        axios.post("https://api-for-ecm-app.herokuapp.com/cart", {
+        axios.post("https://my-api-for-frontend.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -580,7 +580,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in wishlist");
       } else {
-        axios.post("https://api-for-ecm-app.herokuapp.com/favourites", {
+        axios.post("https://my-api-for-frontend.herokuapp.com/favourites", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -595,7 +595,7 @@ export default {
     },
     searchByPrice() {
       axios
-        .get(`https://api-for-ecm-app.herokuapp.com/products/range/${this.value}`)
+        .get(`https://my-api-for-frontend.herokuapp.com/products/range/${this.value}`)
         .then((response) => (this.rangePriceValue = response.data.myData));
       this.men = false;
       this.products = false;
@@ -621,7 +621,7 @@ export default {
         this.others = false;
       } else if (this.searchCategories === "women") {
         var response = await axios.get(
-          `https://api-for-ecm-app.herokuapp.com/products/women/page/${this.currentPageWomen}`
+          `https://my-api-for-frontend.herokuapp.com/products/women/page/${this.currentPageWomen}`
         );
         var responseData = response.data;
         this.currentPageWomen = responseData.pageWomen;
@@ -676,7 +676,7 @@ export default {
       var getInput = document.getElementById("inputForSearch");
       axios
         .get(
-          "https://api-for-ecm-app.herokuapp.com/products/search/bykey/" + getInput.value + ""
+          "https://my-api-for-frontend.herokuapp.com/products/search/bykey/" + getInput.value + ""
         )
         .then((response) => (this.searchProductByKey = response.data.myData));
       this.products = false;

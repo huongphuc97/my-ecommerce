@@ -71,7 +71,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`https://api-for-ecm-app.herokuapp.com/orders/get/${this.code}`)
+      .get(`https://my-api-for-frontend.herokuapp.com/orders/get/${this.code}`)
       .then((response) => {
         this.orderDetails = response.data.myData[0];
       });

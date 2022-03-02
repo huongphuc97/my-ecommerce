@@ -21,7 +21,7 @@
               <img
                 @click="toggler = !toggler"
                 v-if="products.image"
-                :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${products.image}`"
+                :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${products.image}`"
                 alt=""
               />
             </div>
@@ -32,7 +32,7 @@
                     <img
                       @click="toggler = !toggler"
                       v-if="products.image"
-                      :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${products.image}`"
+                      :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${products.image}`"
                       alt=""
                     />
                   </div>
@@ -40,7 +40,7 @@
                     <img
                       @click="toggler = !toggler"
                       v-if="products.image"
-                      :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${products.image}`"
+                      :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${products.image}`"
                       alt=""
                     />
                   </div>
@@ -48,7 +48,7 @@
                     <img
                       @click="toggler = !toggler"
                       v-if="products.image"
-                      :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${products.image}`"
+                      :src="`https://my-api-for-frontend..herokuapp.com/public/image/products/${products.image}`"
                       alt=""
                     />
                   </div>
@@ -301,7 +301,7 @@
       <FsLightbox
         :toggler="toggler"
         :sources="[
-          `https://api-for-ecm-app.herokuapp.com/public/image/products/${products.image}`,
+          `https://my-api-for-frontend.herokuapp.com/public/image/products/${products.image}`,
         ]"
       />
     </div>
@@ -358,11 +358,11 @@ export default {
         return item.id == product.id;
       });
       if (foundItem) {
-        axios.put(`https://api-for-ecm-app.herokuapp.com/cart/${foundItem.id}`, {
+        axios.put(`https://my-api-for-frontend.herokuapp.com/cart/${foundItem.id}`, {
           quantity: (foundItem.quantity += quantity1),
         });
       } else {
-        axios.post("https://api-for-ecm-app.herokuapp.com/cart", {
+        axios.post("https://my-api-for-frontend.herokuapp.com/cart", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -383,7 +383,7 @@ export default {
       if (foundItem) {
         alert("Item already exists in wishlist");
       } else {
-        axios.post("https://api-for-ecm-app.herokuapp.com/favourites", {
+        axios.post("https://my-api-for-frontend.herokuapp.com/favourites", {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -400,7 +400,7 @@ export default {
       this.rating = rating;
     },
     submitReview() {
-      let notification = axios.post("https://api-for-ecm-app.herokuapp.com/review", {
+      let notification = axios.post("https://my-api-for-frontend.herokuapp.com/review", {
         name: this.nameReview,
         email: this.emailReview,
         rating: this.rating,
@@ -449,7 +449,7 @@ export default {
     this.favouritesApi();
     this.reviewApi();
     axios
-      .get("https://api-for-ecm-app.herokuapp.com/products")
+      .get("https://my-api-for-frontend.herokuapp.com/products")
       .then((response) => (this.products = response.data.myData[this.id - 1]));
   },
 };

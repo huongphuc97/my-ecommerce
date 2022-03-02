@@ -43,7 +43,7 @@
                     <tr v-for="c in cart" :key="c.id">
                       <td scope="row">
                         <img
-                          :src="`https://api-for-ecm-app.herokuapp.com/public/image/products/${c.image}`"
+                          :src="`https://my-api-for-frontend.herokuapp.com/public/image/products/${c.image}`"
                           alt=""
                         />
                       </td>
@@ -89,18 +89,18 @@ export default {
   },
   methods: {
     deleteItemCart(item) {
-      axios.delete(`https://api-for-ecm-app.herokuapp.com/cart/${item.id}`);
+      axios.delete(`https://my-api-for-frontend.herokuapp.com/cart/${item.id}`);
     },
     makeOrder() {
       this.cart.map((item) => {
-        var noti = axios.post("https://api-for-ecm-app.herokuapp.com/orders", {
+        var noti = axios.post("https://my-api-for-frontend.herokuapp.com/orders", {
           user_id: this.idUser,
           order_details_name: item.name,
           order_details_price: item.price,
           order_details_quantity: item.quantity,
         });
         if (noti) {
-          axios.delete("https://api-for-ecm-app.herokuapp.com/cart");
+          axios.delete("https://my-api-for-frontend.herokuapp.com/cart");
           this.$router.push("/account");
         }
       });
@@ -108,7 +108,7 @@ export default {
     getUser() {
       var token = localStorage.getItem("token");
       axios
-        .get("https://api-for-ecm-app.herokuapp.com/accounts/get", {
+        .get("https://my-api-for-frontend.com/accounts/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
