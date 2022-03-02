@@ -23,119 +23,74 @@ createApp(App)
     methods: {
       productsApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/products")
+          .get("https://api-for-ecm-app.herokuapp.com/products")
           .then((response) => (this.products = response.data.myData));
       },
-      // refreshProductsApi() {
-      //     setInterval(() => {
-      //         this.productsApi();
-      //     }, 100);
-      // },
       menApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/products/men")
+          .get("https://api-for-ecm-app.herokuapp.com/products/men")
           .then((response) => (this.men = response.data.myData));
       },
-      // refreshMen() {
-      //     setInterval(() => {
-      //         this.menApi();
-      //     }, 100);
-      // },
       womenApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/products/women")
+          .get("https://api-for-ecm-app.herokuapp.com/products/women")
           .then((response) => (this.women = response.data.myData));
       },
-      // refreshWomen() {
-      //     setInterval(() => {
-      //         this.womenApi();
-      //     }, 100);
-      // },
       othersApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/products/others")
+          .get("https://api-for-ecm-app.herokuapp.com/products/others")
           .then((response) => (this.others = response.data.myData));
       },
-      // refreshOthers() {
-      //     setInterval(() => {
-      //         this.othersApi();
-      //     }, 100);
-      // },
       cartApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/cart")
+          .get("https://api-for-ecm-app.herokuapp.com/cart")
           .then((response) => (this.cart = response.data.myData));
       },
       categoryApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/categories")
+          .get("https://api-for-ecm-app.herokuapp.com/categories")
           .then((response) => (this.categories = response.data.myData));
       },
-      // refreshCategoryApi() {
-      //     setInterval(() => {
-      //         this.categoryApi();
-      //     }, 100);
-      // },
-      // refreshCart() {
-      //     setInterval(() => {
-      //         this.cartApi();
-      //     }, 100);
-      // },
       favouritesApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/favourites")
+          .get("https://api-for-ecm-app.herokuapp.com/favourites")
           .then((response) => (this.favourites = response.data.myData));
       },
       accountsApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/accounts")
+          .get("https://api-for-ecm-app.herokuapp.com/accounts")
           .then((response) => (this.accounts = response.data.myData));
       },
-      // refreshUser() {
-      //     setInterval(() => {
-      //         this.accountsApi();
-      //     }, 100);
-      // },
-      // refreshFavourites() {
-      //     setInterval(() => {
-      //         this.favouritesApi();
-      //     }, 100);
-      // },
       reviewApi() {
         axios
-          .get("https://get-api-ecommerce-pj.herokuapp.com/review")
+          .get("https://api-for-ecm-app.herokuapp.com/review")
           .then((response) => (this.review = response.data.myData));
       },
-      // refreshReview() {
-      //     setInterval(() => {
-      //         this.reviewApi();
-      //     }, 100);
-      // },
       sortNewestApi() {
         axios
           .get(
-            "https://get-api-ecommerce-pj.herokuapp.com/products/sort/newest"
+            "https://api-for-ecm-app.herokuapp.com/products/sort/newest"
           )
           .then((response) => (this.newest = response.data.myData));
       },
       sortOldestApi() {
         axios
           .get(
-            "https://get-api-ecommerce-pj.herokuapp.com/products/sort/oldest"
+            "https://api-for-ecm-app.herokuapp.com/products/sort/oldest"
           )
           .then((response) => (this.oldest = response.data.myData));
       },
       sortHighPriceApi() {
         axios
           .get(
-            "https://get-api-ecommerce-pj.herokuapp.com/products/sort/highprice"
+            "https://api-for-ecm-app.herokuapp.com/products/sort/highprice"
           )
           .then((response) => (this.highPrice = response.data.myData));
       },
       sortLowPriceApi() {
         axios
           .get(
-            "https://get-api-ecommerce-pj.herokuapp.com/products/sort/lowprice"
+            "https://api-for-ecm-app.herokuapp.com/products/sort/lowprice"
           )
           .then((response) => (this.lowPrice = response.data.myData));
       },
