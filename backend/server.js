@@ -83,7 +83,7 @@ function verifyToken(request, response, next) {
   }
 }
 
-app.post("/accounts/create", authPage("admin"), function (request, response) {
+app.post("/accounts/create", function (request, response) {
   let sql = "INSERT INTO account SET ?";
   conn.query(sql, request.body, function (err, data) {
     response.send({
@@ -303,8 +303,8 @@ app.post("/orders", function (request, response) {
   let sql = "INSERT INTO orders SET ?";
   conn.query(sql, request.body, function (err, data) {
     conn.query(
-      "UPDATE orders SET order_code = SUBSTRING(MD5(RAND())FROM 1 FOR 14) WHERE user_id = ?",
-      request.params.id,
+      "UPDATE orders SET order_code = substr(md5(rand()),1,13) WHERE user_id = ?",
+      request.body.user_id,
       function (err2, data2) {
         response.send({
           result: data,

@@ -73,8 +73,15 @@
             <div class="footer-title">
               <h3>Subscribe</h3>
               <div class="form-subscribe">
-                <input type="email" placeholder="email" class="form-control" />
-                <button>Subscribe</button>
+                <form @submit.prevent="subscribe()">
+                  <input
+                    type="email"
+                    placeholder="email"
+                    class="form-control"
+                    v-model="email"
+                  />
+                  <button type="submit">Subscribe</button>
+                </form>
               </div>
             </div>
           </div>
@@ -86,6 +93,16 @@
 <script>
 export default {
   name: "Footer",
+  data() {
+    return {
+      email: null,
+    };
+  },
+  methods: {
+    subscribe() {
+      alert(`Thank ${this.email} for subscribing us`);
+    },
+  },
 };
 </script>
 <style scoped>
